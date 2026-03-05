@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import HijoCert from "../assets/cert_HIJO.jpg";
-import AntiCert from "../assets/cert_ANTI.jpg";
+import AntiCert from "../assets/cert_Anti.jpg";
 import EthicsCert from "../assets/cert_Ethics.jpg";
 import ICT1Cert from "../assets/cert-ICT1.jpg";
 import ICT2Cert from "../assets/cert_ICT2.jpg";
