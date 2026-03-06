@@ -1,5 +1,5 @@
 // src/ui/Navbar.jsx
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_OFFSET = 110;
@@ -18,48 +18,62 @@ const Navbar = () => {
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = useCallback((id) => {
     const el = document.getElementById(id);
     if (!el) return;
 
     setOpen(false);
+    setActive(id);
 
-    requestAnimationFrame(() => {
-      const y = window.scrollY + el.getBoundingClientRect().top - NAV_OFFSET;
-      window.scrollTo({ top: y, behavior: "smooth" });
+    const targetY =
+      window.scrollY + el.getBoundingClientRect().top - NAV_OFFSET;
+
+    window.history.replaceState(null, "", `#${id}`);
+
+    window.scrollTo({
+      top: Math.max(0, targetY),
+      behavior: "smooth",
     });
-  };
+
+    // Small follow-up correction for repeated clicks / mobile / layout shifts
+    setTimeout(() => {
+      const freshEl = document.getElementById(id);
+      if (!freshEl) return;
+
+      const correctedY =
+        window.scrollY + freshEl.getBoundingClientRect().top - NAV_OFFSET;
+
+      window.scrollTo({
+        top: Math.max(0, correctedY),
+        behavior: "smooth",
+      });
+    }, 120);
+  }, []);
 
   useEffect(() => {
     const ids = links.map((l) => l.id);
-
     let rafId = null;
 
     const setActiveFromScroll = () => {
       rafId = null;
 
-      const elements = ids
+      const sections = ids
         .map((id) => document.getElementById(id))
         .filter(Boolean);
 
-      if (elements.length === 0) return;
+      if (!sections.length) return;
 
-      let bestId = ids[0];
-      let bestDist = Number.POSITIVE_INFINITY;
+      const scrollPosition = window.scrollY + NAV_OFFSET + 20;
 
-      for (const el of elements) {
-        const rect = el.getBoundingClientRect();
+      let current = ids[0];
 
-        if (rect.bottom <= NAV_OFFSET) continue;
-
-        const dist = Math.abs(rect.top - NAV_OFFSET);
-        if (dist < bestDist) {
-          bestDist = dist;
-          bestId = el.id;
+      for (const section of sections) {
+        if (section.offsetTop <= scrollPosition) {
+          current = section.id;
         }
       }
 
-      setActive(bestId);
+      setActive(current);
     };
 
     const onScroll = () => {
@@ -67,16 +81,42 @@ const Navbar = () => {
       rafId = requestAnimationFrame(setActiveFromScroll);
     };
 
+    const onResize = () => setActiveFromScroll();
+
     setActiveFromScroll();
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", setActiveFromScroll);
+    window.addEventListener("resize", onResize);
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", setActiveFromScroll);
+      window.removeEventListener("resize", onResize);
     };
+  }, [links]);
+
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+
+    const exists = links.some((link) => link.id === hash);
+    if (!exists) return;
+
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (!el) return;
+
+      const y = window.scrollY + el.getBoundingClientRect().top - NAV_OFFSET;
+
+      window.scrollTo({
+        top: Math.max(0, y),
+        behavior: "smooth",
+      });
+
+      setActive(hash);
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [links]);
 
   return (
@@ -97,6 +137,7 @@ const Navbar = () => {
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-2 text-sm font-semibold tracking-wide text-white"
             aria-label="Go to Home"
+            type="button"
           >
             <span className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20">
               A
@@ -110,12 +151,16 @@ const Navbar = () => {
           <ul className="hidden items-center gap-2 sm:flex">
             {links.map((link) => {
               const isActive = active === link.id;
+
               return (
                 <li key={link.id} className="relative">
                   <button
                     onClick={() => scrollToSection(link.id)}
+                    type="button"
                     className={`relative rounded-xl px-4 py-2 text-xs font-semibold tracking-wide transition ${
-                      isActive ? "text-amber-300" : "text-gray-300 hover:text-white"
+                      isActive
+                        ? "text-amber-300"
+                        : "text-gray-300 hover:text-white"
                     }`}
                   >
                     {isActive && (
@@ -137,6 +182,7 @@ const Navbar = () => {
             onClick={() => setOpen((v) => !v)}
             className="sm:hidden inline-flex items-center justify-center rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-gray-200 hover:bg-white/10 transition"
             aria-label="Toggle Menu"
+            type="button"
           >
             {open ? "Close" : "Menu"}
           </button>
@@ -150,15 +196,17 @@ const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative border-t border-white/10 px-4 pb-4 pt-3 sm:hidden overflow-hidden"
+              className="relative overflow-hidden border-t border-white/10 px-4 pb-4 pt-3 sm:hidden"
             >
               <div className="grid gap-2">
                 {links.map((link) => {
                   const isActive = active === link.id;
+
                   return (
                     <button
                       key={link.id}
                       onClick={() => scrollToSection(link.id)}
+                      type="button"
                       className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
                         isActive
                           ? "bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20"
