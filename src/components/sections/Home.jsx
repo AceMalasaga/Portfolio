@@ -14,6 +14,7 @@ import Hyperledger from "../assets/hyperledger-fabric.jpg";
 import Tailwind from "../assets/Tailwind.png";
 import Linux from "../assets/linux.png";
 import Profile from "../assets/profile.jpg";
+import Python from "../assets/python.png";
 
 /* ===== Smooth reveal presets ===== */
 const sectionReveal = {
@@ -42,20 +43,57 @@ const springSoft = {
 
 const Home = () => {
   /* ================= TECH STACK ================= */
-  const techStack = useMemo(
+  const techStackGroups = useMemo(
     () => [
-      { icon: reactLogo, name: "React" },
-      { icon: Tailwind, name: "Tailwind CSS" },
-      { icon: jsLogo, name: "JavaScript" },
-      { icon: nodeLogo, name: "Node.js" },
-      { icon: postgre, name: "PostgreSQL" },
-      { icon: Hyperledger, name: "Hyperledger Fabric" },
-      { icon: dockerCompose, name: "Docker Compose" },
-      { icon: Linux, name: "Linux" },
-      { icon: htmlLogo, name: "HTML5" },
-      { icon: cssLogo, name: "CSS3" },
-      { icon: gitLogo, name: "Git" },
-      { icon: githubLogo, name: "GitHub" },
+      {
+        title: "Frontend",
+        subtitle: "Interfaces that are clean, responsive, and user-focused.",
+        items: [
+          { icon: reactLogo, name: "React", note: "Component-based UI development" },
+          { icon: Tailwind, name: "Tailwind CSS", note: "Fast and consistent styling" },
+          { icon: jsLogo, name: "JavaScript", note: "Interactive web functionality" },
+          { icon: htmlLogo, name: "HTML5", note: "Semantic structure and layout" },
+          { icon: cssLogo, name: "CSS3", note: "Modern styling and responsiveness" },
+        ],
+      },
+      {
+        title: "Backend & Data",
+        subtitle: "Reliable services and structured data handling.",
+        items: [
+          { icon: nodeLogo, name: "Node.js", note: "Server-side logic and APIs" },
+          { icon: postgre, name: "PostgreSQL", note: "Relational database management" },
+          { icon: Python, name: "Python", note: "Scripting and backend development" },
+        ],
+      },
+      {
+        title: "Blockchain & Systems",
+        subtitle: "Secure systems, traceability, and deployment workflows.",
+        items: [
+          {
+            icon: Hyperledger,
+            name: "Hyperledger Fabric",
+            note: "Permissioned blockchain applications",
+          },
+          {
+            icon: dockerCompose,
+            name: "Docker Compose",
+            note: "Multi-service environment setup",
+          },
+          { icon: Linux, name: "Linux", note: "Development and deployment environment" },
+          { icon: gitLogo, name: "Git", note: "Version control and collaboration" },
+          { icon: githubLogo, name: "GitHub", note: "Code hosting and team workflow" },
+        ],
+      },
+    ],
+    []
+  );
+
+  const stackHighlights = useMemo(
+    () => [
+      { label: "Frontend", value: "React + Tailwind" },
+      { label: "Backend", value: "Node + PostgreSQL" },
+      { label: "Systems", value: "Linux + Docker" },
+      { label: "Blockchain", value: "Hyperledger Fabric" },
     ],
     []
   );
@@ -70,28 +108,6 @@ const Home = () => {
     ],
     []
   );
-
-  /* ================= TOOLTIP ================= */
-  const [tooltip, setTooltip] = useState({
-    visible: false,
-    text: "",
-    x: 0,
-    y: 0,
-  });
-
-  const showTooltip = (event, name) => {
-    setTooltip({
-      visible: true,
-      text: name,
-      x: event.clientX + 14,
-      y: event.clientY + 14,
-    });
-  };
-
-  const hideTooltip = () => setTooltip((p) => ({ ...p, visible: false }));
-
-  // Duplicate for seamless marquee
-  const marqueeItems = useMemo(() => [...techStack, ...techStack], [techStack]);
 
   /* ===== HERO VISIBILITY (for scroll hint) ===== */
   const heroRef = useRef(null);
@@ -110,20 +126,18 @@ const Home = () => {
 
   return (
     <div className="px-6">
-      {/* ✅ ONE consistent container for everything */}
       <div className="mx-auto w-full max-w-6xl">
-        {/* ===================== HERO (FULL SCREEN ONLY) ===================== */}
+        {/* ===================== HERO ===================== */}
         <section
           ref={heroRef}
           className="relative min-h-[calc(100vh-7rem)] flex items-center"
         >
-          {/* ===== Scroll hint (LOWER + NEW ANIMATION) ===== */}
           <AnimatePresence>
             {showScrollHint && (
               <motion.a
                 href="#about"
                 aria-label="Scroll to About"
-                className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 z-20"
+                className="absolute -bottom-10 md:-bottom-7 left-1/2 -translate-x-1/2 z-20"
                 initial={{ opacity: 0, y: 14, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.985 }}
@@ -214,7 +228,7 @@ const Home = () => {
               <motion.div variants={itemUp} className="flex flex-wrap gap-3">
                 <a
                   href="#projects"
-                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] active:scale-[0.99]"
+                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99]"
                 >
                   View Projects
                 </a>
@@ -222,7 +236,7 @@ const Home = () => {
                 <a
                   href="/Ace_Malasaga_Resume.pdf"
                   download
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-gray-200 transition hover:bg-white/10"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10"
                 >
                   Download Resume
                 </a>
@@ -328,7 +342,6 @@ const Home = () => {
         </section>
 
         {/* ===================== ABOUT + EXPERIENCE ===================== */}
-        {/* ✅ keep same container width; only limit text width inside */}
         <section id="about" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -351,14 +364,16 @@ const Home = () => {
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {["UI clarity", "Responsive design", "Real-time dashboards", "Blockchain apps"].map((x) => (
-                <span
-                  key={x}
-                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
-                >
-                  {x}
-                </span>
-              ))}
+              {["UI clarity", "Responsive design", "Real-time dashboards", "Blockchain apps"].map(
+                (x) => (
+                  <span
+                    key={x}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
+                  >
+                    {x}
+                  </span>
+                )
+              )}
             </div>
           </motion.div>
 
@@ -397,14 +412,31 @@ const Home = () => {
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {[
-                        { t: "What I built", d: "Core UI screens + voting flow + admin/dashboard features." },
-                        { t: "Security focus", d: "Immutable records and controlled access per user role." },
-                        { t: "Stack used", d: "React, Tailwind, Node.js, PostgreSQL, Docker Compose." },
-                        { t: "Result", d: "A more reliable voting workflow with traceable records." },
+                        {
+                          t: "What I built",
+                          d: "Core UI screens + voting flow + admin/dashboard features.",
+                        },
+                        {
+                          t: "Security focus",
+                          d: "Immutable records and controlled access per user role.",
+                        },
+                        {
+                          t: "Stack used",
+                          d: "React, Tailwind, Node.js, PostgreSQL, Docker Compose.",
+                        },
+                        {
+                          t: "Result",
+                          d: "A more reliable voting workflow with traceable records.",
+                        },
                       ].map((card) => (
-                        <div key={card.t} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                        <div
+                          key={card.t}
+                          className="rounded-2xl border border-white/10 bg-black/20 p-4"
+                        >
                           <p className="text-xs font-semibold text-amber-300">{card.t}</p>
-                          <p className="mt-2 text-xs leading-relaxed text-gray-400">{card.d}</p>
+                          <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                            {card.d}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -413,7 +445,12 @@ const Home = () => {
               </div>
 
               <div className="mt-7 flex flex-wrap gap-2">
-                {["Communication", "UI implementation", "Blockchain network basics", "Team collaboration"].map((x) => (
+                {[
+                  "Communication",
+                  "UI implementation",
+                  "Blockchain network basics",
+                  "Team collaboration",
+                ].map((x) => (
                   <span
                     key={x}
                     className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
@@ -426,7 +463,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        {/* ===================== TECH STACK (MARQUEE) ===================== */}
+        {/* ===================== TECH STACK REDESIGN ===================== */}
         <section id="stack" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -434,14 +471,25 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.22 }}
             transition={springSoft}
-            className="mb-8"
+            className="mb-10"
           >
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Tools</p>
-            <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
-              Tech <span className="text-amber-400">Stack</span>
-            </h2>
-            <p className="mt-3 text-sm text-gray-400 max-w-2xl">
-              Hover cards to view names. Smooth infinite carousel for a premium feel.
+
+            <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Tech <span className="text-amber-400">Stack</span>
+              </h2>
+
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
+                <span className="h-2 w-2 rounded-full bg-amber-400" />
+                12 tools across 3 core areas
+              </div>
+            </div>
+
+            <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
+              My stack focuses on building responsive front-end interfaces, reliable
+              backend workflows, and secure blockchain-based systems for practical
+              real-world use.
             </p>
           </motion.div>
 
@@ -453,35 +501,107 @@ const Home = () => {
             transition={springSoft}
             className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
           >
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0b0b0c] to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#0b0b0c] to-transparent z-10" />
+            <div className="pointer-events-none absolute -top-24 right-[-60px] h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 left-[-60px] h-72 w-72 rounded-full bg-white/5 blur-3xl" />
 
-            <div className="py-6">
-              <motion.div
-                className="flex gap-4 w-max px-6"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 22, ease: "linear", repeat: Infinity }}
-              >
-                {marqueeItems.map((tech, idx) => (
-                  <div
-                    key={`${tech.name}-${idx}`}
-                    onMouseMove={(e) => showTooltip(e, tech.name)}
-                    onMouseLeave={hideTooltip}
-                    className="group flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 hover:border-amber-400/25 hover:bg-white/5 transition cursor-pointer"
+            <div className="relative z-10 p-6 md:p-9">
+              {/* Top summary */}
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                {stackHighlights.map((item, idx) => (
+                  <motion.div
+                    key={item.label}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.2 }}
+                    transition={{ ...springSoft, delay: idx * 0.05 }}
+                    className="rounded-2xl border border-white/10 bg-black/20 p-4"
                   >
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-400/10 ring-1 ring-amber-400/15">
-                      <img src={tech.icon} alt={tech.name} className="h-6 w-6 object-contain" draggable="false" />
-                    </div>
-                    <p className="text-sm font-semibold text-gray-200 whitespace-nowrap">{tech.name}</p>
-                  </div>
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-gray-100">
+                      {item.value}
+                    </p>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
+
+              {/* Stack groups */}
+              <div className="mt-8 space-y-6">
+                {techStackGroups.map((group, groupIndex) => (
+                  <motion.div
+                    key={group.title}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.16 }}
+                    transition={{ ...springSoft, delay: groupIndex * 0.08 }}
+                    className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 md:p-6"
+                  >
+                    <div className="mb-5 flex items-start justify-between gap-4 flex-wrap">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-100">
+                          {group.title} <span className="text-amber-400">Tools</span>
+                        </h3>
+                        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-400">
+                          {group.subtitle}
+                        </p>
+                      </div>
+
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
+                        {group.items.length} tools
+                      </span>
+                    </div>
+
+                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                      {group.items.map((tech, idx) => (
+                        <motion.div
+                          key={`${group.title}-${tech.name}`}
+                          initial={{ opacity: 0, y: 14 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true, amount: 0.2 }}
+                          transition={{ ...springSoft, delay: idx * 0.04 }}
+                          whileHover={{ y: -6, scale: 1.01 }}
+                          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition"
+                        >
+                          <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
+
+                          <div className="flex items-start gap-4">
+                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-amber-400/15 bg-amber-400/10 ring-1 ring-amber-400/10">
+                              <img
+                                src={tech.icon}
+                                alt={tech.name}
+                                className="h-8 w-8 object-contain"
+                                draggable="false"
+                              />
+                            </div>
+
+                            <div className="min-w-0">
+                              <h4 className="text-base font-semibold text-gray-100">
+                                {tech.name}
+                              </h4>
+                              <p className="mt-2 text-sm leading-relaxed text-gray-400">
+                                {tech.note}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                          <div className="mt-4 flex items-center gap-2 text-xs text-gray-500">
+                            <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400/90" />
+                            <span>Core skill</span>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </section>
 
         {/* ===================== EDUCATION ===================== */}
-        {/* ✅ same container width; keep readable text widths inside */}
         <section id="education" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -505,7 +625,8 @@ const Home = () => {
             </div>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              A clear path from foundational studies to college—focused on building practical skills in tech and software development.
+              A clear path from foundational studies to college—focused on building practical
+              skills in tech and software development.
             </p>
           </motion.div>
 
@@ -579,16 +700,6 @@ const Home = () => {
           </motion.div>
         </section>
       </div>
-
-      {/* Tooltip */}
-      {tooltip.visible && (
-        <div
-          className="fixed pointer-events-none z-[9999] rounded-lg bg-black/80 px-3 py-2 text-xs text-amber-300 shadow-lg backdrop-blur"
-          style={{ left: tooltip.x, top: tooltip.y }}
-        >
-          {tooltip.text}
-        </div>
-      )}
     </div>
   );
 };

@@ -2,7 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const NAV_OFFSET = 110; // must match MainContent scroll-mt offset
+const NAV_OFFSET = 110;
 
 const Navbar = () => {
   const links = useMemo(
@@ -22,31 +22,34 @@ const Navbar = () => {
     const el = document.getElementById(id);
     if (!el) return;
 
-    const y = window.scrollY + el.getBoundingClientRect().top - NAV_OFFSET;
-    window.scrollTo({ top: y, behavior: "smooth" });
-
     setOpen(false);
+
+    requestAnimationFrame(() => {
+      const y = window.scrollY + el.getBoundingClientRect().top - NAV_OFFSET;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    });
   };
 
   useEffect(() => {
     const ids = links.map((l) => l.id);
-    const elements = ids.map((id) => document.getElementById(id)).filter(Boolean);
-
-    if (elements.length === 0) return;
 
     let rafId = null;
 
     const setActiveFromScroll = () => {
       rafId = null;
 
-      // pick the section closest to NAV_OFFSET line (below navbar)
+      const elements = ids
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      if (elements.length === 0) return;
+
       let bestId = ids[0];
       let bestDist = Number.POSITIVE_INFINITY;
 
       for (const el of elements) {
         const rect = el.getBoundingClientRect();
 
-        // ignore sections completely above the navbar line
         if (rect.bottom <= NAV_OFFSET) continue;
 
         const dist = Math.abs(rect.top - NAV_OFFSET);
@@ -64,7 +67,6 @@ const Navbar = () => {
       rafId = requestAnimationFrame(setActiveFromScroll);
     };
 
-    // initial sync (refresh mid-page)
     setActiveFromScroll();
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -85,7 +87,6 @@ const Navbar = () => {
         transition={{ type: "spring", stiffness: 120, damping: 18 }}
         className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.45)]"
       >
-        {/* subtle glow */}
         <div className="pointer-events-none absolute inset-0 opacity-70">
           <div className="absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-amber-400/10 blur-2xl" />
           <div className="absolute -bottom-24 right-12 h-48 w-48 rounded-full bg-amber-400/5 blur-2xl" />
@@ -113,8 +114,9 @@ const Navbar = () => {
                 <li key={link.id} className="relative">
                   <button
                     onClick={() => scrollToSection(link.id)}
-                    className={`relative rounded-xl px-4 py-2 text-xs font-semibold tracking-wide transition
-                      ${isActive ? "text-amber-300" : "text-gray-300 hover:text-white"}`}
+                    className={`relative rounded-xl px-4 py-2 text-xs font-semibold tracking-wide transition ${
+                      isActive ? "text-amber-300" : "text-gray-300 hover:text-white"
+                    }`}
                   >
                     {isActive && (
                       <motion.span
@@ -148,7 +150,7 @@ const Navbar = () => {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="relative border-t border-white/10 px-4 pb-4 pt-3 sm:hidden"
+              className="relative border-t border-white/10 px-4 pb-4 pt-3 sm:hidden overflow-hidden"
             >
               <div className="grid gap-2">
                 {links.map((link) => {
@@ -157,12 +159,11 @@ const Navbar = () => {
                     <button
                       key={link.id}
                       onClick={() => scrollToSection(link.id)}
-                      className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition
-                        ${
-                          isActive
-                            ? "bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20"
-                            : "bg-white/5 text-gray-200 hover:bg-white/10"
-                        }`}
+                      className={`w-full rounded-xl px-4 py-3 text-left text-sm font-semibold transition ${
+                        isActive
+                          ? "bg-amber-400/10 text-amber-300 ring-1 ring-amber-400/20"
+                          : "bg-white/5 text-gray-200 hover:bg-white/10"
+                      }`}
                     >
                       {link.label}
                     </button>
