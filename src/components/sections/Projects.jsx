@@ -15,8 +15,8 @@ import ComelecTally from "../assets/comelec_Tally.png";
 import ComelecResult from "../assets/comelec_Result.png";
 import Login from "../assets/comelec_login.png";
 import LGUApprove from "../assets/LGU_approve.png";
-import AuditCandidates from "../assets/Audit_candidates.png";
-import AuditLedger from "../assets/Audit_ledger.png";
+import AuditCandidates from "../assets/Audit_Candidates.png";
+import AuditLedger from "../assets/Audit_Ledger.png";
 
 import postgre from "../assets/postgre.png";
 import dockerCompose from "../assets/docker-compose.png";
