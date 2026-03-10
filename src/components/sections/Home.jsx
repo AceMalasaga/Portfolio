@@ -15,6 +15,7 @@ import Tailwind from "../assets/Tailwind.png";
 import Linux from "../assets/linux.png";
 import Profile from "../assets/profile.jpg";
 import Python from "../assets/python.png";
+import aceResume from "../assets/Resume-Ace.pdf";
 
 /* ===== Smooth reveal presets ===== */
 const sectionReveal = {
@@ -46,67 +47,149 @@ const Home = () => {
   const techStackGroups = useMemo(
     () => [
       {
-        title: "Frontend",
-        subtitle: "Interfaces that are clean, responsive, and user-focused.",
-        items: [
-          { icon: reactLogo, name: "React", note: "Component-based UI development" },
-          { icon: Tailwind, name: "Tailwind CSS", note: "Fast and consistent styling" },
-          { icon: jsLogo, name: "JavaScript", note: "Interactive web functionality" },
-          { icon: htmlLogo, name: "HTML5", note: "Semantic structure and layout" },
-          { icon: cssLogo, name: "CSS3", note: "Modern styling and responsiveness" },
-        ],
-      },
-      {
-        title: "Backend & Data",
-        subtitle: "Reliable services and structured data handling.",
-        items: [
-          { icon: nodeLogo, name: "Node.js", note: "Server-side logic and APIs" },
-          { icon: postgre, name: "PostgreSQL", note: "Relational database management" },
-          { icon: Python, name: "Python", note: "Scripting and backend development" },
-        ],
-      },
-      {
-        title: "Blockchain & Systems",
-        subtitle: "Secure systems, traceability, and deployment workflows.",
+        title: "Core Skills",
+        subtitle:
+          "Technologies I am most confident using for building responsive interfaces and practical applications.",
         items: [
           {
             icon: Hyperledger,
             name: "Hyperledger Fabric",
-            note: "Permissioned blockchain applications",
+            description:
+              "Used for permissioned blockchain application development.",
+            level: "Core skill",
+          },
+          {
+            icon: Python,
+            name: "Python",
+            description:
+              "Used for scripting, logic building, and practical programming tasks.",
+            level: "Core skill",
+          },
+          {
+            icon: reactLogo,
+            name: "React.js",
+            description:
+              "Used for building modern, component-based user interfaces.",
+            level: "Core skill",
+          },
+          {
+            icon: htmlLogo,
+            name: "HTML5",
+            description:
+              "Used for semantic page structure and accessible content layout.",
+            level: "Core skill",
+          },
+          {
+            icon: cssLogo,
+            name: "CSS3",
+            description:
+              "Used for styling, layout control, and responsive presentation.",
+            level: "Core skill",
+          },
+          {
+            icon: Tailwind,
+            name: "Tailwind CSS",
+            description:
+              "Used for fast, consistent, and maintainable UI styling.",
+            level: "Core skill",
+          },
+        ],
+      },
+      {
+        title: "Experienced With",
+        subtitle:
+          "Tools and technologies I have used in projects, internships, and development workflows.",
+        items: [
+          {
+            icon: jsLogo,
+            name: "JavaScript",
+            description:
+              "Used for interactivity and front-end application behavior.",
+            level: "Project experience",
+          },
+          {
+            icon: nodeLogo,
+            name: "Node.js",
+            description:
+              "Used for backend services, APIs, and application logic.",
+            level: "Project experience",
+          },
+          {
+            icon: postgre,
+            name: "PostgreSQL",
+            description:
+              "Used for relational data storage and structured database work.",
+            level: "Project experience",
           },
           {
             icon: dockerCompose,
             name: "Docker Compose",
-            note: "Multi-service environment setup",
+            description:
+              "Used for managing multi-service development environments.",
+            level: "Project experience",
           },
-          { icon: Linux, name: "Linux", note: "Development and deployment environment" },
-          { icon: gitLogo, name: "Git", note: "Version control and collaboration" },
-          { icon: githubLogo, name: "GitHub", note: "Code hosting and team workflow" },
+          {
+            icon: Linux,
+            name: "Linux",
+            description:
+              "Used as a development and deployment working environment.",
+            level: "Working experience",
+          },
+          {
+            icon: gitLogo,
+            name: "Git",
+            description:
+              "Used for version control and tracking project changes.",
+            level: "Working experience",
+          },
+          {
+            icon: githubLogo,
+            name: "GitHub",
+            description:
+              "Used for repository hosting and team-based collaboration.",
+            level: "Working experience",
+          },
         ],
       },
     ],
-    []
+    [],
   );
 
   const stackHighlights = useMemo(
     () => [
-      { label: "Frontend", value: "React + Tailwind" },
-      { label: "Backend", value: "Node + PostgreSQL" },
-      { label: "Systems", value: "Linux + Docker" },
-      { label: "Blockchain", value: "Hyperledger Fabric" },
+      { label: "Core Skills", value: "Hyperledger Fabric" },
+      { label: "Frontend", value: "React.js + Tailwind CSS" },
+      { label: "Backend", value: "Python" },
+      { label: "Environment", value: "Docker Compose" },
     ],
-    []
+    [],
   );
 
   /* ================= EDUCATION ================= */
   const educationData = useMemo(
     () => [
-      { year: "2026", title: "College", text: "University of Mindanao – Tagum" },
-      { year: "2020", title: "Senior High", text: "Tagum National Trade School" },
-      { year: "2018", title: "High School", text: "Canocotan National High School" },
-      { year: "2014", title: "Elementary", text: "Herculina L. Edig Elementary School" },
+      {
+        year: "2026",
+        title: "College",
+        text: "University of Mindanao – Tagum",
+      },
+      {
+        year: "2020",
+        title: "Senior High",
+        text: "Tagum National Trade School",
+      },
+      {
+        year: "2018",
+        title: "High School",
+        text: "Canocotan National High School",
+      },
+      {
+        year: "2014",
+        title: "Elementary",
+        text: "Herculina L. Edig Elementary School",
+      },
     ],
-    []
+    [],
   );
 
   /* ===== HERO VISIBILITY (for scroll hint) ===== */
@@ -130,8 +213,7 @@ const Home = () => {
         {/* ===================== HERO ===================== */}
         <section
           ref={heroRef}
-          className="relative min-h-[calc(100vh-7rem)] flex items-center"
-        >
+          className="relative min-h-[calc(100vh-7rem)] flex items-center">
           <AnimatePresence>
             {showScrollHint && (
               <motion.a
@@ -141,13 +223,15 @@ const Home = () => {
                 initial={{ opacity: 0, y: 14, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 12, scale: 0.985 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
-              >
+                transition={{ duration: 0.35, ease: "easeOut" }}>
                 <motion.div
                   className="group flex flex-col items-center gap-2"
                   animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-                >
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}>
                   <div className="relative flex items-center justify-center rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 backdrop-blur">
                     <motion.span
                       aria-hidden="true"
@@ -159,7 +243,11 @@ const Home = () => {
                           "0 0 0 0 rgba(251,191,36,0.0)",
                         ],
                       }}
-                      transition={{ duration: 1.8, repeat: Infinity, ease: "easeOut" }}
+                      transition={{
+                        duration: 1.8,
+                        repeat: Infinity,
+                        ease: "easeOut",
+                      }}
                     />
                     <span className="text-[11px] tracking-wide text-gray-300 group-hover:text-white transition">
                       Scroll down
@@ -170,13 +258,15 @@ const Home = () => {
                     className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] backdrop-blur"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.18 }}
-                  >
+                    transition={{ duration: 0.18 }}>
                     <motion.span
                       className="text-amber-400 text-lg leading-none"
                       animate={{ y: [0, 6, 0] }}
-                      transition={{ duration: 1.1, repeat: Infinity, ease: "easeInOut" }}
-                    >
+                      transition={{
+                        duration: 1.1,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}>
                       ↓
                     </motion.span>
                   </motion.div>
@@ -193,8 +283,7 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.7 }}
               transition={springSoft}
-              className="space-y-6"
-            >
+              className="space-y-6">
               <motion.div variants={itemUp}>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                   <span className="h-2 w-2 rounded-full bg-amber-400" />
@@ -204,17 +293,16 @@ const Home = () => {
 
               <motion.h1
                 variants={itemUp}
-                className="text-4xl font-extrabold leading-tight tracking-tight md:text-6xl"
-              >
+                className="text-4xl font-extrabold leading-tight tracking-tight md:text-6xl">
                 Hi, I’m{" "}
                 <span className="text-amber-400">Ace Bernard M. Malasaga</span>.
               </motion.h1>
 
               <motion.p
                 variants={itemUp}
-                className="max-w-xl text-sm leading-relaxed text-gray-400 md:text-base"
-              >
-                I build modern web interfaces and secure systems. I’ve worked on a{" "}
+                className="max-w-xl text-sm leading-relaxed text-gray-400 md:text-base">
+                I build modern web interfaces and secure systems. I’ve worked on
+                a{" "}
                 <span className="text-amber-300 font-semibold">
                   Smart Helmet monitoring platform
                 </span>{" "}
@@ -228,33 +316,32 @@ const Home = () => {
               <motion.div variants={itemUp} className="flex flex-wrap gap-3">
                 <a
                   href="#projects"
-                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99]"
-                >
+                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99]">
                   View Projects
                 </a>
 
                 <a
-                  href="/Ace_Malasaga_Resume.pdf"
-                  download
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10"
-                >
+                  href={aceResume}
+                  download="Ace_Bernard_M_Malasaga_Resume.pdf"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10">
                   Download Resume
                 </a>
               </motion.div>
 
               <motion.div
                 variants={itemUp}
-                className="flex flex-wrap gap-2 text-xs text-gray-500"
-              >
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
-                  React + Tailwind
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
-                  Hyperledger Fabric
-                </span>
-                <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
-                  Node + PostgreSQL
-                </span>
+                className="flex flex-wrap gap-2 text-xs text-gray-500">
+                {[
+                  "Front-end Development",
+                  "Blockchain-Based Systems",
+                  "Real-Time Monitoring",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
+                    {item}
+                  </span>
+                ))}
               </motion.div>
             </motion.div>
 
@@ -265,8 +352,7 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.55 }}
               transition={springSoft}
-              className="relative"
-            >
+              className="relative">
               <div className="relative mx-auto flex items-center justify-center max-w-[520px]">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="h-[420px] w-[420px] rounded-full bg-amber-400/12 blur-2xl" />
@@ -292,8 +378,7 @@ const Home = () => {
                   className="relative z-10 h-[320px] w-[320px] rounded-full overflow-hidden ring-1 ring-white/10 shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
                   initial={{ y: 10, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.12 }}
-                >
+                  transition={{ duration: 0.7, ease: "easeOut", delay: 0.12 }}>
                   <img
                     src={Profile}
                     alt="Ace Bernard profile"
@@ -307,8 +392,7 @@ const Home = () => {
                   className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-wrap items-center justify-center gap-2"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}
-                >
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}>
                   <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-gray-200 backdrop-blur">
                     Tagum City, PH
                   </span>
@@ -320,14 +404,13 @@ const Home = () => {
 
               <div className="mt-12 grid grid-cols-3 gap-3">
                 {[
-                  { k: "Focus", v: "Python" },
-                  { k: "Stack", v: "React/Tailwind" },
-                  { k: "Interest", v: "Blockchain" },
+                  { k: "Core", v: "Python" },
+                  { k: "UI", v: "React/Tailwind" },
+                  { k: "Focus", v: "Blockchain" },
                 ].map((x) => (
                   <div
                     key={x.k}
-                    className="rounded-2xl border border-white/10 bg-white/[0.06] p-3 text-center"
-                  >
+                    className="rounded-2xl border border-white/10 bg-white/[0.06] p-3 text-center">
                     <p className="text-[10px] uppercase tracking-wider text-gray-500">
                       {x.k}
                     </p>
@@ -342,6 +425,7 @@ const Home = () => {
         </section>
 
         {/* ===================== ABOUT + EXPERIENCE ===================== */}
+        {/* ===================== ABOUT + EXPERIENCE ===================== */}
         <section id="about" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -349,31 +433,39 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.25 }}
             transition={springSoft}
-            className="mb-10"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">About</p>
+            className="mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
+              About
+            </p>
             <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
-              Building clear UI and <span className="text-amber-400">secure systems</span>.
+              Building clear UI and{" "}
+              <span className="text-amber-400">secure systems</span>.
             </h2>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              I’m a developer who cares about clarity: dashboards that are easy to read,
-              UI that feels clean, and systems that keep data reliable. I enjoy projects
-              where I can mix real-time monitoring and blockchain-style traceability—
-              especially using <span className="text-amber-300 font-semibold">Hyperledger Fabric</span>.
+              I’m a developer who cares about clarity: dashboards that are easy
+              to read, UI that feels clean, and systems that keep data reliable.
+              I enjoy projects where I can mix real-time monitoring and
+              blockchain-style traceability— especially using{" "}
+              <span className="text-amber-300 font-semibold">
+                Hyperledger Fabric
+              </span>
+              .
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
-              {["UI clarity", "Responsive design", "Real-time dashboards", "Blockchain apps"].map(
-                (x) => (
-                  <span
-                    key={x}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
-                  >
-                    {x}
-                  </span>
-                )
-              )}
+              {[
+                "UI clarity",
+                "Responsive design",
+                "Real-time dashboards",
+                "Blockchain apps",
+              ].map((x) => (
+                <span
+                  key={x}
+                  className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
+                  {x}
+                </span>
+              ))}
             </div>
           </motion.div>
 
@@ -383,57 +475,139 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.22 }}
             transition={springSoft}
-            className="rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)] overflow-hidden"
-          >
+            className="rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)] overflow-hidden">
             <div className="p-7 md:p-9">
               <div className="flex items-center justify-between gap-4 flex-wrap">
                 <h3 className="text-xl md:text-2xl font-semibold">
                   Experience <span className="text-amber-400">Timeline</span>
                 </h3>
                 <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs text-gray-300">
-                  2025
+                  2025 – Present
                 </span>
               </div>
 
               <div className="mt-6 relative">
                 <div className="absolute left-3 top-1 bottom-1 w-px bg-white/10" />
 
-                <div className="pl-10 space-y-8">
+                <div className="pl-10 space-y-10">
+                  {/* Hijo Internship */}
                   <div className="relative">
                     <div className="absolute left-[-34px] top-1 h-3 w-3 rounded-full bg-amber-400 shadow-[0_0_0_6px_rgba(255,184,0,0.12)]" />
 
-                    <p className="text-sm font-semibold text-gray-200">
-                      Blockchain Developer Intern{" "}
-                      <span className="text-amber-300">• Hijo Resources Corporation</span>
-                    </p>
-                    <p className="mt-1 text-xs text-gray-500">
-                      Built an e-voting system using Hyperledger Fabric.
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold text-gray-200">
+                          Blockchain Developer Intern{" "}
+                          <span className="text-amber-300">
+                            • Hijo Resources Corporation
+                          </span>
+                        </p>
+                        <p className="mt-1 text-xs text-gray-500">
+                          November 2025 – February 2026
+                        </p>
+                      </div>
+
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] text-gray-300">
+                        Internship
+                      </span>
+                    </div>
+
+                    <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                      Contributed to the development of an e-voting system using{" "}
+                      <span className="font-semibold text-amber-300">
+                        Hyperledger Fabric
+                      </span>
+                      , helping build interfaces and workflows focused on
+                      security, traceability, and usability.
                     </p>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {[
                         {
                           t: "What I built",
-                          d: "Core UI screens + voting flow + admin/dashboard features.",
+                          d: "Core UI screens, voting flow, and admin dashboard features for the system.",
                         },
                         {
                           t: "Security focus",
-                          d: "Immutable records and controlled access per user role.",
+                          d: "Supported a workflow centered on immutable records and controlled access based on user roles.",
                         },
                         {
                           t: "Stack used",
-                          d: "React, Tailwind, Node.js, PostgreSQL, Docker Compose.",
+                          d: "React, Tailwind CSS, Node.js, PostgreSQL, and Docker Compose.",
                         },
                         {
                           t: "Result",
-                          d: "A more reliable voting workflow with traceable records.",
+                          d: "Helped create a more reliable voting process with secure and traceable transaction records.",
                         },
                       ].map((card) => (
                         <div
                           key={card.t}
-                          className="rounded-2xl border border-white/10 bg-black/20 p-4"
-                        >
-                          <p className="text-xs font-semibold text-amber-300">{card.t}</p>
+                          className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                          <p className="text-xs font-semibold text-amber-300">
+                            {card.t}
+                          </p>
+                          <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                            {card.d}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Freelance */}
+                  <div className="relative">
+                    <div className="absolute left-[-34px] top-1 h-3 w-3 rounded-full bg-amber-400 shadow-[0_0_0_6px_rgba(255,184,0,0.12)]" />
+
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-semibold text-gray-200">
+                          Freelance Blockchain Developer{" "}
+                          <span className="text-amber-300">
+                            • Private Client
+                          </span>
+                        </p>
+                        <p className="mt-1 text-xs text-gray-500">
+                          March 2026 – May 2026
+                        </p>
+                      </div>
+
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] text-gray-300">
+                        Freelance
+                      </span>
+                    </div>
+
+                    <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                      Currently developing a Hyperledger Fabric–based system
+                      where submitted data must be verified first, and only
+                      authorized users are allowed to send records into the
+                      network.
+                    </p>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {[
+                        {
+                          t: "Project focus",
+                          d: "Building a blockchain-based system designed for verified and access-controlled data submission.",
+                        },
+                        {
+                          t: "Access control",
+                          d: "Ensuring that only users with proper authorization can submit transactions to the system.",
+                        },
+                        {
+                          t: "Data verification",
+                          d: "Implementing a process where records are validated first before they can be written to the blockchain.",
+                        },
+                        {
+                          t: "Goal",
+                          d: "Create a more secure and trustworthy workflow for handling sensitive system data.",
+                        },
+                      ].map((card) => (
+                        <div
+                          key={card.t}
+                          className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                          <p className="text-xs font-semibold text-amber-300">
+                            {card.t}
+                          </p>
                           <p className="mt-2 text-xs leading-relaxed text-gray-400">
                             {card.d}
                           </p>
@@ -446,15 +620,14 @@ const Home = () => {
 
               <div className="mt-7 flex flex-wrap gap-2">
                 {[
-                  "Communication",
-                  "UI implementation",
-                  "Blockchain network basics",
-                  "Team collaboration",
+                  "Internship Experience",
+                  "Freelance Project",
+                  "Access-Controlled Workflow",
+                  "Verified Data Submission",
                 ].map((x) => (
                   <span
                     key={x}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
-                  >
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
                     {x}
                   </span>
                 ))}
@@ -463,7 +636,7 @@ const Home = () => {
           </motion.div>
         </section>
 
-        {/* ===================== TECH STACK REDESIGN ===================== */}
+        {/* ===================== TECH STACK ===================== */}
         <section id="stack" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -471,9 +644,10 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.22 }}
             transition={springSoft}
-            className="mb-10"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Tools</p>
+            className="mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
+              Tools
+            </p>
 
             <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
@@ -482,14 +656,14 @@ const Home = () => {
 
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-amber-400" />
-                12 tools across 3 core areas
+                Core skills and hands-on project tools
               </div>
             </div>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              My stack focuses on building responsive front-end interfaces, reliable
-              backend workflows, and secure blockchain-based systems for practical
-              real-world use.
+              My stack reflects the technologies I use most confidently,
+              together with the tools I have applied in real projects and
+              development workflows.
             </p>
           </motion.div>
 
@@ -499,8 +673,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.18 }}
             transition={springSoft}
-            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
-          >
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]">
             <div className="pointer-events-none absolute -top-24 right-[-60px] h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 left-[-60px] h-72 w-72 rounded-full bg-white/5 blur-3xl" />
 
@@ -514,8 +687,7 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ ...springSoft, delay: idx * 0.05 }}
-                    className="rounded-2xl border border-white/10 bg-black/20 p-4"
-                  >
+                    className="rounded-2xl border border-white/10 bg-black/20 p-4">
                     <p className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
                       {item.label}
                     </p>
@@ -535,12 +707,12 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.16 }}
                     transition={{ ...springSoft, delay: groupIndex * 0.08 }}
-                    className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 md:p-6"
-                  >
+                    className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 md:p-6">
                     <div className="mb-5 flex items-start justify-between gap-4 flex-wrap">
                       <div>
                         <h3 className="text-xl font-semibold text-gray-100">
-                          {group.title} <span className="text-amber-400">Tools</span>
+                          {group.title}{" "}
+                          <span className="text-amber-400">Tools</span>
                         </h3>
                         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-400">
                           {group.subtitle}
@@ -561,8 +733,7 @@ const Home = () => {
                           viewport={{ once: true, amount: 0.2 }}
                           transition={{ ...springSoft, delay: idx * 0.04 }}
                           whileHover={{ y: -6, scale: 1.01 }}
-                          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition"
-                        >
+                          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition">
                           <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
 
                           <div className="flex items-start gap-4">
@@ -580,7 +751,7 @@ const Home = () => {
                                 {tech.name}
                               </h4>
                               <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                                {tech.note}
+                                {tech.description}
                               </p>
                             </div>
                           </div>
@@ -589,7 +760,7 @@ const Home = () => {
 
                           <div className="mt-4 flex items-center gap-2 text-xs text-gray-500">
                             <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400/90" />
-                            <span>Core skill</span>
+                            <span>{tech.level}</span>
                           </div>
                         </motion.div>
                       ))}
@@ -609,9 +780,10 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.22 }}
             transition={springSoft}
-            className="mb-10"
-          >
-            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">Background</p>
+            className="mb-10">
+            <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
+              Background
+            </p>
 
             <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
@@ -625,8 +797,9 @@ const Home = () => {
             </div>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              A clear path from foundational studies to college—focused on building practical
-              skills in tech and software development.
+              A clear path from foundational studies to college, focused on
+              growth, learning, and building practical skills in technology and
+              software development.
             </p>
           </motion.div>
 
@@ -636,8 +809,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.18 }}
             transition={springSoft}
-            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
-          >
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]">
             <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-white/5 blur-3xl" />
 
@@ -650,8 +822,7 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ ...springSoft, delay: idx * 0.06 }}
-                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-5 hover:bg-white/[0.05] hover:border-amber-400/20 transition"
-                  >
+                    className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 p-5 hover:bg-white/[0.05] hover:border-amber-400/20 transition">
                     <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl opacity-0 group-hover:opacity-100 transition" />
 
                     <div className="flex items-start justify-between gap-4">
@@ -678,23 +849,24 @@ const Home = () => {
 
                     <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
                       <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400/90" />
-                      <span>Milestone</span>
+                      <span>Academic milestone</span>
                     </div>
                   </motion.div>
                 ))}
               </div>
 
-              <div className="mt-7 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex flex-wrap gap-2">
-                  {["Consistency", "Progress", "Discipline"].map((x) => (
-                    <span
-                      key={x}
-                      className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300"
-                    >
-                      {x}
-                    </span>
-                  ))}
-                </div>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {[
+                  "BS Information Technology",
+                  "Expected Graduation: 2026",
+                  "Academic Journey",
+                ].map((x) => (
+                  <span
+                    key={x}
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
+                    {x}
+                  </span>
+                ))}
               </div>
             </div>
           </motion.div>

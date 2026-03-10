@@ -126,7 +126,6 @@ const Certificate = () => {
       className="group w-full text-left"
     >
       <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)] transition hover:border-amber-400/20">
-        {/* Top image */}
         <div className="relative overflow-hidden">
           <img
             src={cert.image}
@@ -136,7 +135,6 @@ const Certificate = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
-          {/* Top chips */}
           <div className="absolute left-4 top-4 flex items-center gap-2">
             <span className="rounded-full bg-black/55 px-3 py-1 text-[11px] text-gray-200 backdrop-blur">
               {cert.year}
@@ -146,13 +144,11 @@ const Certificate = () => {
             </span>
           </div>
 
-          {/* View hint */}
           <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] text-gray-200 backdrop-blur opacity-0 group-hover:opacity-100 transition">
             Click to view
           </div>
         </div>
 
-        {/* Body */}
         <div className="p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
@@ -169,7 +165,6 @@ const Certificate = () => {
             </div>
           </div>
 
-          {/* Footer mini tags */}
           <div className="mt-4 flex flex-wrap gap-2">
             <Tag>Verified</Tag>
             <Tag>Portfolio-ready</Tag>
@@ -177,7 +172,6 @@ const Certificate = () => {
           </div>
         </div>
 
-        {/* hover glow */}
         <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500">
           <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-amber-400/10 blur-3xl" />
         </div>
@@ -188,7 +182,6 @@ const Certificate = () => {
   return (
     <section id="certificates" className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
         <motion.div
           variants={sectionReveal}
           initial="hidden"
@@ -217,7 +210,6 @@ const Certificate = () => {
           </p>
         </motion.div>
 
-        {/* Filters */}
         <motion.div
           variants={sectionReveal}
           initial="hidden"
@@ -231,7 +223,6 @@ const Certificate = () => {
           ))}
         </motion.div>
 
-        {/* Grid */}
         <motion.div layout className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {filtered.map((cert, index) => (
@@ -250,7 +241,6 @@ const Certificate = () => {
         </motion.div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedCert && (
           <motion.div
@@ -258,20 +248,20 @@ const Certificate = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/75 backdrop-blur-xl px-6 py-10"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6"
           >
             <motion.div
-              initial={{ scale: 0.96, opacity: 0, y: 10 }}
+              initial={{ scale: 0.97, opacity: 0, y: 10 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.96, opacity: 0, y: 10 }}
+              exit={{ scale: 0.98, opacity: 0, y: 10 }}
               transition={springSnappy}
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-6xl"
             >
-              {/* Close */}
               <button
+                type="button"
                 onClick={() => setSelectedCert(null)}
-                className="absolute -top-12 right-0 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-200 hover:bg-white/10 transition"
+                className="absolute right-3 top-3 z-10 rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-white/10"
               >
                 Close
               </button>
@@ -280,34 +270,20 @@ const Certificate = () => {
                 <img
                   src={selectedCert.image}
                   alt={selectedCert.title}
-                  className="w-full"
+                  className="mx-auto max-h-[75vh] w-full object-contain"
                   draggable="false"
                 />
               </div>
 
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <h3 className="text-lg font-semibold text-amber-300">
-                    {selectedCert.title}
-                  </h3>
-                  <p className="text-sm text-gray-400">
-                    {selectedCert.issuer} • {selectedCert.year}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-200">
-                    {selectedCert.type}
-                  </span>
-                  <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs text-amber-300">
-                    Verified
-                  </span>
-                </div>
+              <div className="mt-4 text-center">
+                <h3 className="text-lg font-semibold text-amber-300">
+                  {selectedCert.title}
+                </h3>
+                <p className="text-sm text-gray-400">
+                  {selectedCert.issuer} • {selectedCert.year}
+                </p>
+                <p className="mt-1 text-xs text-gray-500">{selectedCert.type}</p>
               </div>
-
-              <p className="mt-2 text-xs text-gray-500">
-                Tip: Press <span className="text-gray-300">Esc</span> to close.
-              </p>
             </motion.div>
           </motion.div>
         )}

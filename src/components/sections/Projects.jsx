@@ -5,10 +5,19 @@ import projectImage from "../assets/BFP_Dashboard.png";
 import reactIcon from "../assets/science.png";
 import tailwindIcon from "../assets/icons8-tailwind-css-144.png";
 import jsIcon from "../assets/js-file.png";
-import nodeIcon from "../assets/nodejs.png";
 import firebaseIcon from "../assets/icons8-firebase-240.png";
 
 import ComelecDashboard from "../assets/comelec_dashboard.png";
+import ComelecElection from "../assets/comelec_Election.png";
+import ComelecCandidates from "../assets/comelec_Candidates.png";
+import ComelecLedger from "../assets/comelec_Ledger.png";
+import ComelecTally from "../assets/comelec_Tally.png";
+import ComelecResult from "../assets/comelec_Result.png";
+import Login from "../assets/comelec_login.png";
+import LGUApprove from "../assets/LGU_approve.png";
+import AuditCandidates from "../assets/Audit_candidates.png";
+import AuditLedger from "../assets/Audit_ledger.png";
+
 import postgre from "../assets/postgre.png";
 import dockerCompose from "../assets/docker-compose.png";
 import Hyperledger from "../assets/hyperledger-fabric.jpg";
@@ -55,58 +64,129 @@ const Projects = () => {
     []
   );
 
+  const openPreview = (gallery, startIndex, title, meta) => {
+    setPreview({
+      gallery,
+      currentIndex: startIndex,
+      title,
+      meta,
+    });
+  };
+
+  const nextPreview = () => {
+    setPreview((prev) => {
+      if (!prev || !prev.gallery?.length) return prev;
+      return {
+        ...prev,
+        currentIndex: (prev.currentIndex + 1) % prev.gallery.length,
+      };
+    });
+  };
+
+  const prevPreview = () => {
+    setPreview((prev) => {
+      if (!prev || !prev.gallery?.length) return prev;
+      return {
+        ...prev,
+        currentIndex:
+          (prev.currentIndex - 1 + prev.gallery.length) % prev.gallery.length,
+      };
+    });
+  };
+
   const projects = useMemo(
     () => [
       {
         id: "01",
-        tag: "Featured",
-        title: "Smart Helmet",
-        subtitle: "Real-time monitoring dashboard",
+        tag: "Capstone Project",
+        title: "Smart Hard Hat for Disaster Response",
+        subtitle: "Real-time monitoring dashboard for disaster response",
         cover: projectImage,
+        gallery: [projectImage],
         description:
-          "A monitoring platform designed to support responder safety. Tracks environmental conditions and status indicators in real time and displays actionable insights on a clean dashboard.",
+          "A capstone project designed to improve responder safety and operational awareness during disaster response. The system integrates health and environmental sensors managed by an ESP32, while the web platform collects, processes, analyzes, and presents real-time data through a responsive interface for desktop and mobile devices. It provides live readings, alerts when dangerous levels are reached, and data logs for further analysis.",
         highlights: [
-          "Real-time dashboard for safety officers",
-          "Status + environment tracking for responders",
-          "Clean UI focused on readability under pressure",
+          "Built a real-time monitoring dashboard for responder safety",
+          "Displays body temperature, environmental temperature, smoke, and gas readings",
+          "Provides live alerts when dangerous sensor thresholds are reached",
+          "Stores synchronized real-time data using Firebase",
+          "Designed for both desktop and mobile accessibility",
         ],
         tech: techSmartHelmet,
+        roleText:
+          "I built the full website for the project, including the dashboard UI, data presentation, real-time monitoring views, alerts, and the overall user experience across desktop and mobile screens.",
+        focusText:
+          "Focused on making the interface clear, responsive, and practical for real-world use, so users can quickly understand sensor readings, warning states, and recorded data during critical situations.",
         primaryCta: {
           text: "Open Live Project",
           link: "https://bfpmonitoringsystem.web.app",
+          variant: "primary",
         },
         secondaryCta: {
           text: "Preview Screenshot",
           action: () =>
-            setPreview({
-              image: projectImage,
-              title: "Smart Helmet — Preview",
-              meta: "Dashboard Screenshot",
-            }),
+            openPreview(
+              [projectImage],
+              0,
+              "Smart Hard Hat",
+              "Dashboard Screenshot"
+            ),
+          variant: "secondary",
         },
       },
       {
         id: "02",
-        tag: "Blockchain",
+        tag: "Blockchain Project",
         title: "E-Voting System",
-        subtitle: "Hyperledger Fabric + multi-org ledger",
+        subtitle: "Hyperledger Fabric + secure transaction workflow",
         cover: ComelecDashboard,
+        gallery: [
+          Login,
+          ComelecDashboard,
+          ComelecElection,
+          ComelecCandidates,
+          ComelecLedger,
+          ComelecTally,
+          ComelecResult,
+          LGUApprove,
+          AuditCandidates,
+          AuditLedger,
+        ],
         description:
-          "An electronic voting system focused on integrity and auditability. Uses blockchain storage so voting records are hard to tamper with, while keeping organizations’ data synchronized and verifiable.",
+          "A blockchain-based electronic voting system designed for stronger integrity, security, and auditability. The platform uses Hyperledger Fabric to record voting transactions in a permissioned ledger, making records traceable, verifiable, and significantly more resistant to tampering than a typical centralized setup. The system also supports role-based access and controlled participation for a more secure voting process.",
         highlights: [
-          "Role-based access for controlled voting",
-          "Immutable ledger records via Fabric network",
-          "Multi-organization data verification design",
+          "Designed most of the system interface and overall workflow",
+          "Implemented the Hyperledger Fabric side of the project",
+          "Uses a permissioned blockchain network for stronger transaction control",
+          "Creates tamper-resistant and traceable voting records",
+          "Supports role-based access for controlled voting actions",
         ],
         tech: techEvoting,
+        roleText:
+          "I handled most of the system design and was the one responsible for implementing the Hyperledger Fabric side, including the blockchain structure and the secure transaction flow behind the platform.",
+        focusText:
+          "Focused on building a more secure and tamper-resistant voting system by combining controlled access, verifiable transaction records, and blockchain-backed auditability through Hyperledger Fabric.",
         primaryCta: {
           text: "Preview Screenshot",
           action: () =>
-            setPreview({
-              image: ComelecDashboard,
-              title: "E-Voting System — Preview",
-              meta: "Admin / Dashboard Screenshot",
-            }),
+            openPreview(
+              [
+                Login,
+                ComelecDashboard,
+                ComelecElection,
+                ComelecCandidates,
+                ComelecLedger,
+                ComelecTally,
+                ComelecResult,
+                LGUApprove,
+                AuditCandidates,
+                AuditLedger,
+              ],
+              0,
+              "E-Voting System",
+              "System Screens"
+            ),
+          variant: "secondary",
         },
         secondaryCta: null,
       },
@@ -117,6 +197,8 @@ const Projects = () => {
   useEffect(() => {
     const onEsc = (e) => {
       if (e.key === "Escape") setPreview(null);
+      if (e.key === "ArrowRight") nextPreview();
+      if (e.key === "ArrowLeft") prevPreview();
     };
     window.addEventListener("keydown", onEsc);
     return () => window.removeEventListener("keydown", onEsc);
@@ -146,6 +228,38 @@ const Projects = () => {
     </span>
   );
 
+  const renderCTA = (cta) => {
+    if (!cta) return null;
+
+    const isPrimary = cta.variant === "primary";
+    const baseClass = isPrimary
+      ? "inline-flex w-full items-center justify-center rounded-2xl bg-amber-400 px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99] sm:w-auto"
+      : "inline-flex w-full items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10 sm:w-auto";
+
+    if (cta.link) {
+      return (
+        <a
+          href={cta.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={baseClass}
+        >
+          {cta.text}
+        </a>
+      );
+    }
+
+    if (cta.action) {
+      return (
+        <button type="button" onClick={cta.action} className={baseClass}>
+          {cta.text}
+        </button>
+      );
+    }
+
+    return null;
+  };
+
   const Project = ({ p, index }) => {
     return (
       <motion.article
@@ -156,11 +270,9 @@ const Projects = () => {
         transition={{ ...springSoft, delay: index * 0.03 }}
         className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
       >
-        {/* ambient */}
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
 
         <div className="grid gap-8 p-7 md:p-9 lg:grid-cols-12">
-          {/* LEFT: sticky meta (desktop) */}
           <div className="lg:col-span-4">
             <div className="lg:sticky lg:top-28">
               <div className="flex items-start justify-between gap-3">
@@ -168,77 +280,35 @@ const Projects = () => {
                 <Pill>{p.tag}</Pill>
               </div>
 
-              <h3 className="mt-4 text-2xl md:text-3xl font-extrabold tracking-tight">
+              <h3 className="mt-4 text-2xl font-extrabold tracking-tight md:text-3xl">
                 <span className="text-amber-400">{p.title}</span>
               </h3>
               <p className="mt-2 text-sm text-gray-400">{p.subtitle}</p>
 
               <div className="mt-6 space-y-3">
                 {p.highlights.map((h) => (
-                  <div key={h} className="flex gap-3 rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <div
+                    key={h}
+                    className="flex gap-3 rounded-2xl border border-white/10 bg-black/20 p-4"
+                  >
                     <Check />
                     <p className="text-xs leading-relaxed text-gray-300">{h}</p>
                   </div>
                 ))}
               </div>
 
-              {/* CTAs (desktop: keep close to meta) */}
-              <div className="mt-6 flex flex-wrap gap-3">
-                {p.primaryCta?.link ? (
-                  <a
-                    href={p.primaryCta.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-2xl bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] active:scale-[0.99]"
-                  >
-                    {p.primaryCta.text}
-                  </a>
-                ) : (
-                  p.primaryCta?.action && (
-                    <button
-                      type="button"
-                      onClick={p.primaryCta.action}
-                      className="rounded-2xl bg-amber-400 px-6 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] active:scale-[0.99]"
-                    >
-                      {p.primaryCta.text}
-                    </button>
-                  )
-                )}
-
-                {p.secondaryCta?.link ? (
-                  <a
-                    href={p.secondaryCta.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-gray-200 transition hover:bg-white/10"
-                  >
-                    {p.secondaryCta.text}
-                  </a>
-                ) : (
-                  p.secondaryCta?.action && (
-                    <button
-                      type="button"
-                      onClick={p.secondaryCta.action}
-                      className="rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-semibold text-gray-200 transition hover:bg-white/10"
-                    >
-                      {p.secondaryCta.text}
-                    </button>
-                  )
-                )}
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                {renderCTA(p.primaryCta)}
+                {renderCTA(p.secondaryCta)}
               </div>
             </div>
           </div>
 
-          {/* RIGHT: preview + details */}
           <div className="lg:col-span-8">
             <button
               type="button"
               onClick={() =>
-                setPreview({
-                  image: p.cover,
-                  title: `${p.title} — Preview`,
-                  meta: p.subtitle,
-                })
+                openPreview(p.gallery, 0, p.title, p.subtitle)
               }
               className="group relative w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/30"
               aria-label={`Preview ${p.title}`}
@@ -246,7 +316,7 @@ const Projects = () => {
               <img
                 src={p.cover}
                 alt={p.title}
-                className="h-[260px] md:h-[320px] w-full object-cover transition duration-700 group-hover:scale-[1.03]"
+                className="h-[260px] w-full object-cover transition duration-700 group-hover:scale-[1.03] md:h-[320px]"
                 draggable="false"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
@@ -255,13 +325,13 @@ const Projects = () => {
                   Click to preview
                 </span>
                 <span className="rounded-full bg-amber-400/15 px-3 py-1 text-xs text-amber-300 ring-1 ring-amber-400/20 backdrop-blur">
-                  {p.tech.length} tools
+                  {p.gallery.length} {p.gallery.length > 1 ? "screens" : "screen"}
                 </span>
               </div>
             </button>
 
             <div className="mt-6">
-              <p className="text-sm md:text-base leading-relaxed text-gray-400 max-w-3xl">
+              <p className="max-w-3xl text-sm leading-relaxed text-gray-400 md:text-base">
                 {p.description}
               </p>
 
@@ -272,23 +342,17 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* subtle divider */}
             <div className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-            {/* extra: mini “What I learned / Role” area (adds depth) */}
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
                 <p className="text-xs font-semibold text-amber-300">Role</p>
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">
-                  UI implementation, dashboard layout, and integrating project logic for a clean and readable interface.
-                </p>
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">{p.roleText}</p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
                 <p className="text-xs font-semibold text-amber-300">Focus</p>
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">
-                  Clarity under pressure: readable data, strong structure, and a system-first approach for reliability.
-                </p>
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">{p.focusText}</p>
               </div>
             </div>
           </div>
@@ -297,10 +361,11 @@ const Projects = () => {
     );
   };
 
+  const currentImage = preview?.gallery?.[preview.currentIndex];
+
   return (
     <section id="projects" className="px-6 py-16">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
         <motion.div
           variants={container}
           initial="hidden"
@@ -308,11 +373,17 @@ const Projects = () => {
           viewport={{ once: true, amount: 0.5 }}
           className="mb-10"
         >
-          <motion.p variants={revealUp} className="text-xs uppercase tracking-[0.2em] text-gray-500">
+          <motion.p
+            variants={revealUp}
+            className="text-xs uppercase tracking-[0.2em] text-gray-500"
+          >
             Work
           </motion.p>
 
-          <motion.div variants={revealUp} className="mt-2 flex items-end justify-between gap-6 flex-wrap">
+          <motion.div
+            variants={revealUp}
+            className="mt-2 flex flex-wrap items-end justify-between gap-6"
+          >
             <h2 className="text-4xl font-extrabold tracking-tight">
               Featured <span className="text-amber-400">Projects</span>
             </h2>
@@ -323,12 +394,15 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          <motion.p variants={revealUp} className="mt-3 text-sm text-gray-500 max-w-2xl">
-            Systems built for clarity, security, and practical use—focused on dashboards and reliable workflows.
+          <motion.p
+            variants={revealUp}
+            className="mt-3 max-w-2xl text-sm text-gray-500"
+          >
+            Systems built for clarity, security, and practical use—focused on dashboards
+            and reliable workflows.
           </motion.p>
         </motion.div>
 
-        {/* Projects */}
         <div className="space-y-6">
           {projects.map((p, idx) => (
             <Project key={p.id} p={p} index={idx} />
@@ -336,7 +410,6 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Preview modal */}
       <AnimatePresence>
         {preview && (
           <motion.div
@@ -344,7 +417,7 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setPreview(null)}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 backdrop-blur-xl px-4 md:px-6"
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6"
           >
             <motion.div
               initial={{ scale: 0.97, opacity: 0, y: 10 }}
@@ -354,16 +427,37 @@ const Projects = () => {
               onClick={(e) => e.stopPropagation()}
               className="relative w-full max-w-6xl"
             >
-              <button
-                type="button"
-                onClick={() => setPreview(null)}
-                className="absolute right-3 top-3 z-10 rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 hover:bg-white/10 transition"
-              >
-                Close
-              </button>
+              <div className="absolute right-3 top-3 z-20 flex gap-2">
+                {preview.gallery.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={prevPreview}
+                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400"
+                    >
+                      Prev
+                    </button>
+                    <button
+                      type="button"
+                      onClick={nextPreview}
+                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400"
+                    >
+                      Next
+                    </button>
+                  </>
+                )}
+
+                <button
+                  type="button"
+                  onClick={() => setPreview(null)}
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-amber-400"
+                >
+                  Close
+                </button>
+              </div>
 
               <img
-                src={preview.image}
+                src={currentImage}
                 alt={preview.title}
                 className="w-full rounded-3xl border border-white/10 shadow-2xl"
                 draggable="false"
@@ -372,6 +466,11 @@ const Projects = () => {
               <div className="mt-4 text-center">
                 <h3 className="text-lg font-semibold text-amber-300">{preview.title}</h3>
                 <p className="text-sm text-gray-400">{preview.meta}</p>
+                {preview.gallery.length > 1 && (
+                  <p className="mt-1 text-xs text-gray-500">
+                    Image {preview.currentIndex + 1} of {preview.gallery.length}
+                  </p>
+                )}
               </div>
             </motion.div>
           </motion.div>
