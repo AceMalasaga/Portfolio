@@ -182,7 +182,7 @@ const Contact = () => {
                           <button
                             type="button"
                             onClick={() => copyToClipboard(item.copy ?? item.value, item.label)}
-                            className="rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-gray-200 transition hover:bg-white/10 active:scale-[0.98]"
+                            className="rounded-xl border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-semibold text-amber-400 transition hover:bg-white/10 active:scale-[0.98]"
                           >
                             Copy
                           </button>
@@ -192,7 +192,7 @@ const Contact = () => {
                               href={item.link}
                               target={isExternal ? "_blank" : undefined}
                               rel={isExternal ? "noopener noreferrer" : undefined}
-                              className="rounded-xl bg-amber-400 px-3 py-2 text-xs font-semibold text-black transition hover:scale-[1.02] active:scale-[0.98]"
+                              className="rounded-xl bg-amber-400 px-3 py-2 text-xs font-semibold text-white transition hover:scale-[1.02] active:scale-[0.98]"
                             >
                               Open
                             </a>
@@ -280,14 +280,14 @@ const Contact = () => {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=acemalasaga30@gmail.com&su=Project%20Inquiry%20-%20Ace%20Malasaga&body=Hi%20Ace%2C%0A%0AProject%20goal%3A%20%0ADeadline%3A%20%0ATech%20stack%3A%20%0ALinks%3A%20%0A%0AThanks!"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.02] active:scale-[0.99] text-center"
+                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99] text-center"
                 >
                   Email me with a template
                 </a>
 
                 <a
                   href="tel:+639663050107"
-                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-gray-200 transition hover:bg-white/10 text-center"
+                  className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10 text-center"
                 >
                   Call / SMS
                 </a>

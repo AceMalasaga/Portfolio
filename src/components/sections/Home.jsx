@@ -49,48 +49,48 @@ const Home = () => {
       {
         title: "Core Skills",
         subtitle:
-          "Technologies I am most confident using for building responsive interfaces and practical applications.",
+          "Technologies I rely on most when building responsive interfaces, applications, and blockchain-based systems.",
         items: [
           {
             icon: Hyperledger,
             name: "Hyperledger Fabric",
             description:
-              "Used for permissioned blockchain application development.",
+              "Permissioned blockchain platform for building secure distributed applications.",
             level: "Core skill",
           },
           {
             icon: Python,
             name: "Python",
             description:
-              "Used for scripting, logic building, and practical programming tasks.",
+              "General-purpose language used for scripting and application logic.",
             level: "Core skill",
           },
           {
             icon: reactLogo,
             name: "React.js",
             description:
-              "Used for building modern, component-based user interfaces.",
+              "Library for building modern component-based web interfaces.",
             level: "Core skill",
           },
           {
             icon: htmlLogo,
             name: "HTML5",
             description:
-              "Used for semantic page structure and accessible content layout.",
+              "Semantic markup for structuring accessible web pages.",
             level: "Core skill",
           },
           {
             icon: cssLogo,
             name: "CSS3",
             description:
-              "Used for styling, layout control, and responsive presentation.",
+              "Stylesheets for responsive layouts and visual design.",
             level: "Core skill",
           },
           {
             icon: Tailwind,
             name: "Tailwind CSS",
             description:
-              "Used for fast, consistent, and maintainable UI styling.",
+              "Utility-first framework for fast and consistent UI styling.",
             level: "Core skill",
           },
         ],
@@ -98,55 +98,51 @@ const Home = () => {
       {
         title: "Experienced With",
         subtitle:
-          "Tools and technologies I have used in projects, internships, and development workflows.",
+          "Additional tools and technologies applied in projects, internships, and development workflows.",
         items: [
           {
             icon: jsLogo,
             name: "JavaScript",
             description:
-              "Used for interactivity and front-end application behavior.",
+              "Language for client-side interactivity and application logic.",
             level: "Project experience",
           },
           {
             icon: nodeLogo,
             name: "Node.js",
-            description:
-              "Used for backend services, APIs, and application logic.",
+            description: "Runtime for backend services and API development.",
             level: "Project experience",
           },
           {
             icon: postgre,
             name: "PostgreSQL",
-            description:
-              "Used for relational data storage and structured database work.",
+            description: "Relational database for structured data storage.",
             level: "Project experience",
           },
           {
             icon: dockerCompose,
             name: "Docker Compose",
             description:
-              "Used for managing multi-service development environments.",
+              "Tool for running and managing multi-service environments.",
             level: "Project experience",
           },
           {
             icon: Linux,
             name: "Linux",
             description:
-              "Used as a development and deployment working environment.",
+              "Development and deployment operating system environment.",
             level: "Working experience",
           },
           {
             icon: gitLogo,
             name: "Git",
-            description:
-              "Used for version control and tracking project changes.",
+            description: "Version control system for tracking code changes.",
             level: "Working experience",
           },
           {
             icon: githubLogo,
             name: "GitHub",
-            description:
-              "Used for repository hosting and team-based collaboration.",
+            description: "Platform for hosting repositories and collaboration.",
             level: "Working experience",
           },
         ],
@@ -171,7 +167,7 @@ const Home = () => {
       {
         year: "2026",
         title: "College",
-        text: "University of Mindanao – Tagum",
+        text: "University of Mindanao – Tagum • BS Information Technology",
       },
       {
         year: "2020",
@@ -207,13 +203,21 @@ const Home = () => {
 
   const showScrollHint = heroInView && !userScrolled;
 
+  const smoothScrollTo = (id) => (e) => {
+    e.preventDefault();
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div className="px-6">
       <div className="mx-auto w-full max-w-6xl">
         {/* ===================== HERO ===================== */}
         <section
           ref={heroRef}
-          className="relative min-h-[calc(100vh-7rem)] flex items-center">
+          className="relative flex min-h-0 items-start pt-6 sm:pt-8 md:pt-10 lg:min-h-[calc(100vh-7rem)] lg:items-center lg:pt-0">
           <AnimatePresence>
             {showScrollHint && (
               <motion.a
@@ -301,24 +305,30 @@ const Home = () => {
               <motion.p
                 variants={itemUp}
                 className="max-w-xl text-sm leading-relaxed text-gray-400 md:text-base">
-                I build modern web interfaces and secure systems. I’ve worked on
-                a{" "}
+                Frontend and Blockchain Developer specializing in{" "}
                 <span className="text-amber-300 font-semibold">
-                  Smart Helmet monitoring platform
-                </span>{" "}
-                and a{" "}
+                  React.js, Node.js, and Hyperledger Fabric
+                </span>
+                . I build secure web applications and real-time monitoring
+                systems, including a{" "}
                 <span className="text-amber-300 font-semibold">
-                  Hyperledger Fabric e-voting system
+                  Smart Hard Hat safety system
                 </span>{" "}
-                focused on reliability, clarity, and real-world usability.
+                and a
+                <span className="text-amber-300 font-semibold">
+                  {" "}
+                  blockchain-based e-voting system
+                </span>{" "}
+                designed for reliability and real-world use.
               </motion.p>
 
               <motion.div variants={itemUp} className="flex flex-wrap gap-3">
-                <a
-                  href="#projects"
-                  className="rounded-2xl bg-amber-400 px-5 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99]">
+                <button
+                  type="button"
+                  onClick={smoothScrollTo("projects")}
+                  className="rounded-2xl bg-amber-400 px-6 py-3 text-sm font-semibold text-white transition hover:scale-[1.02] active:scale-[0.99]">
                   View Projects
-                </a>
+                </button>
 
                 <a
                   href={aceResume}
@@ -326,22 +336,6 @@ const Home = () => {
                   className="rounded-2xl border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-amber-400 transition hover:bg-white/10">
                   Download Resume
                 </a>
-              </motion.div>
-
-              <motion.div
-                variants={itemUp}
-                className="flex flex-wrap gap-2 text-xs text-gray-500">
-                {[
-                  "Front-end Development",
-                  "Blockchain-Based Systems",
-                  "Real-Time Monitoring",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">
-                    {item}
-                  </span>
-                ))}
               </motion.div>
             </motion.div>
 
@@ -394,7 +388,7 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.25 }}>
                   <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-xs text-gray-200 backdrop-blur">
-                    Tagum City, PH
+                    Tagum City, Philippines
                   </span>
                   <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-3 py-1 text-xs text-amber-300 backdrop-blur">
                     Available for collaboration
@@ -404,9 +398,9 @@ const Home = () => {
 
               <div className="mt-12 grid grid-cols-3 gap-3">
                 {[
-                  { k: "Core", v: "Python" },
-                  { k: "UI", v: "React/Tailwind" },
-                  { k: "Focus", v: "Blockchain" },
+                  { k: "Learning", v: "Python" },
+                  { k: "Frontend", v: "React/Tailwind" },
+                  { k: "Focus", v: "Hyperledger Fabric" },
                 ].map((x) => (
                   <div
                     key={x.k}
@@ -425,7 +419,6 @@ const Home = () => {
         </section>
 
         {/* ===================== ABOUT + EXPERIENCE ===================== */}
-        {/* ===================== ABOUT + EXPERIENCE ===================== */}
         <section id="about" className="scroll-mt-28 py-16">
           <motion.div
             variants={sectionReveal}
@@ -438,19 +431,17 @@ const Home = () => {
               About
             </p>
             <h2 className="mt-2 text-3xl md:text-4xl font-extrabold tracking-tight">
-              Building clear UI and{" "}
-              <span className="text-amber-400">secure systems</span>.
+              Building clear interfaces and{" "}
+              <span className="text-amber-400">reliable systems</span>.
             </h2>
 
             <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              I’m a developer who cares about clarity: dashboards that are easy
-              to read, UI that feels clean, and systems that keep data reliable.
-              I enjoy projects where I can mix real-time monitoring and
-              blockchain-style traceability— especially using{" "}
-              <span className="text-amber-300 font-semibold">
-                Hyperledger Fabric
-              </span>
-              .
+              I enjoy building systems where clarity and reliability matter. I
+              focus on creating dashboards that are easy to understand,
+              interfaces that remain responsive under real-time data, and
+              systems that keep information accurate and trustworthy. Many of my
+              projects explore how monitoring platforms and distributed systems
+              can work together to support real-world decision making.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -513,31 +504,34 @@ const Home = () => {
                     </div>
 
                     <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                      Contributed to the development of an e-voting system using{" "}
+                      Developed key parts of a{" "}
                       <span className="font-semibold text-amber-300">
-                        Hyperledger Fabric
+                        Hyperledger Fabric–based e-voting system
                       </span>
-                      , helping build interfaces and workflows focused on
-                      security, traceability, and usability.
+                      , focusing on transparent and tamper-resistant voting
+                      records. I implemented blockchain transaction workflows
+                      and built role-based interfaces for administrators
+                      (COMELEC), LGU operators, auditors, and voters, connecting
+                      the UI to secure blockchain-backed voting transactions.
                     </p>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {[
                         {
-                          t: "What I built",
-                          d: "Core UI screens, voting flow, and admin dashboard features for the system.",
+                          t: "Blockchain Logic",
+                          d: "Implemented chaincode workflows and transaction processes to securely record voting data on the Hyperledger Fabric ledger.",
                         },
                         {
-                          t: "Security focus",
-                          d: "Supported a workflow centered on immutable records and controlled access based on user roles.",
+                          t: "Role-Based Interfaces",
+                          d: "Developed the main UI workflows for COMELEC/admin, LGU operators, auditors, and voters.",
                         },
                         {
-                          t: "Stack used",
-                          d: "React, Tailwind CSS, Node.js, PostgreSQL, and Docker Compose.",
+                          t: "Voting Workflow",
+                          d: "Built the process for voter verification, vote submission, and secure transaction recording within the blockchain network.",
                         },
                         {
-                          t: "Result",
-                          d: "Helped create a more reliable voting process with secure and traceable transaction records.",
+                          t: "Tech Stack",
+                          d: "React, Tailwind CSS, Node.js, Hyperledger Fabric, PostgreSQL, and Docker Compose.",
                         },
                       ].map((card) => (
                         <div
@@ -649,21 +643,20 @@ const Home = () => {
               Tools
             </p>
 
-            <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+            <div className="mt-2 flex flex-wrap items-end justify-between gap-6">
+              <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
                 Tech <span className="text-amber-400">Stack</span>
               </h2>
 
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-amber-400" />
-                Core skills and hands-on project tools
+                Core technologies and development tools
               </div>
             </div>
 
-            <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
-              My stack reflects the technologies I use most confidently,
-              together with the tools I have applied in real projects and
-              development workflows.
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-gray-400 md:text-base">
+              A selection of the technologies I use most confidently, along with
+              tools I have applied in real projects and development workflows.
             </p>
           </motion.div>
 
@@ -688,7 +681,7 @@ const Home = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ ...springSoft, delay: idx * 0.05 }}
                     className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-gray-500">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-amber-400">
                       {item.label}
                     </p>
                     <p className="mt-2 text-sm font-semibold text-gray-100">
@@ -708,7 +701,7 @@ const Home = () => {
                     viewport={{ once: true, amount: 0.16 }}
                     transition={{ ...springSoft, delay: groupIndex * 0.08 }}
                     className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 md:p-6">
-                    <div className="mb-5 flex items-start justify-between gap-4 flex-wrap">
+                    <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
                       <div>
                         <h3 className="text-xl font-semibold text-gray-100">
                           {group.title}{" "}
@@ -733,21 +726,23 @@ const Home = () => {
                           viewport={{ once: true, amount: 0.2 }}
                           transition={{ ...springSoft, delay: idx * 0.04 }}
                           whileHover={{ y: -6, scale: 1.01 }}
-                          className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition">
+                          className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition">
                           <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
 
-                          <div className="flex items-start gap-4">
-                            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-amber-400/15 bg-amber-400/10 ring-1 ring-amber-400/10">
-                              <img
-                                src={tech.icon}
-                                alt={tech.name}
-                                className="h-8 w-8 object-contain"
-                                draggable="false"
-                              />
+                          <div className="grid flex-1 grid-cols-[72px_minmax(0,1fr)] gap-4">
+                            <div className="flex h-full items-center justify-center">
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-amber-400/15 bg-white/[0.06] ring-1 ring-amber-400/15">
+                                <img
+                                  src={tech.icon}
+                                  alt={tech.name}
+                                  className="h-8 w-8 object-contain"
+                                  draggable="false"
+                                />
+                              </div>
                             </div>
 
                             <div className="min-w-0">
-                              <h4 className="text-base font-semibold text-gray-100">
+                              <h4 className="text-base font-semibold text-amber-400">
                                 {tech.name}
                               </h4>
                               <p className="mt-2 text-sm leading-relaxed text-gray-400">
@@ -830,7 +825,7 @@ const Home = () => {
                         <p className="text-[11px] uppercase tracking-[0.22em] text-gray-500">
                           {item.year}
                         </p>
-                        <p className="mt-1 text-base font-semibold text-gray-100">
+                        <p className="mt-1 text-base font-semibold text-amber-400">
                           {item.title}
                         </p>
                         <p className="mt-2 text-sm leading-relaxed text-gray-400">
@@ -855,7 +850,7 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="mt-7 flex flex-wrap gap-2">
+              {/* <div className="mt-7 flex flex-wrap gap-2">
                 {[
                   "BS Information Technology",
                   "Expected Graduation: 2026",
@@ -867,7 +862,7 @@ const Home = () => {
                     {x}
                   </span>
                 ))}
-              </div>
+              </div> */}
             </div>
           </motion.div>
         </section>
