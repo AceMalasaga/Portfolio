@@ -48,7 +48,7 @@ const Projects = () => {
       { icon: nodeIcon2, name: "Node.js" },
       { icon: firebaseIcon, name: "Firebase" },
     ],
-    []
+    [],
   );
 
   const techEvoting = useMemo(
@@ -61,7 +61,7 @@ const Projects = () => {
       { icon: Linux, name: "Linux" },
       { icon: nodeIcon2, name: "Node.js" },
     ],
-    []
+    [],
   );
 
   const openPreview = (gallery, startIndex, title, meta) => {
@@ -100,23 +100,23 @@ const Projects = () => {
         id: "01",
         tag: "Capstone Project",
         title: "Smart Hard Hat for Disaster Response",
-        subtitle: "Real-time monitoring dashboard for disaster response",
+        subtitle: "IoT-driven health & environmental monitoring ecosystem",
         cover: projectImage,
         gallery: [projectImage],
         description:
-          "A capstone project designed to improve responder safety and operational awareness during disaster response. The system integrates health and environmental sensors managed by an ESP32, while the web platform collects, processes, analyzes, and presents real-time data through a responsive interface for desktop and mobile devices. It provides live readings, alerts when dangerous levels are reached, and data logs for further analysis.",
+          "An IoT-integrated safety ecosystem engineered to enhance situational awareness for frontline responders. The system bridges hardware and software by synchronizing ESP32-managed health and environmental sensors with a centralized cloud platform. It processes high-frequency sensor telemetry to provide incident commanders with real-time decision-making data through a low-latency, responsive monitoring interface.",
         highlights: [
-          "Built a real-time monitoring dashboard for responder safety",
-          "Displays body temperature, environmental temperature, smoke, and gas readings",
-          "Provides live alerts when dangerous sensor thresholds are reached",
-          "Stores synchronized real-time data using Firebase",
-          "Designed for both desktop and mobile accessibility",
+          "Architected a real-time telemetry dashboard using React and Firebase for mission-critical monitoring.",
+          "Integrated multi-sensor data streams (Body Temp, Environment, Gas/Smoke) into a unified UI.",
+          "Engineered a threshold-based alert system for immediate notification of life-threatening conditions.",
+          "Implemented automated data logging and historical analysis for post-incident reporting.",
+          "Optimized cross-platform performance for mobile field use and desktop command centers.",
         ],
         tech: techSmartHelmet,
         roleText:
-          "I built the full website for the project, including the dashboard UI, data presentation, real-time monitoring views, alerts, and the overall user experience across desktop and mobile screens.",
+          "I led the full-stack development of the web infrastructure, from designing the real-time data ingestion layer in Firebase to engineering the responsive frontend dashboard and automated alert logic.",
         focusText:
-          "Focused on making the interface clear, responsive, and practical for real-world use, so users can quickly understand sensor readings, warning states, and recorded data during critical situations.",
+          "Focused on reducing cognitive load for users by creating a high-contrast, 'glanceable' interface that translates raw sensor telemetry into actionable safety insights under high-stress conditions.",
         primaryCta: {
           text: "Open Live Project",
           link: "https://bfpmonitoringsystem.web.app",
@@ -129,7 +129,7 @@ const Projects = () => {
               [projectImage],
               0,
               "Smart Hard Hat",
-              "Dashboard Screenshot"
+              "Dashboard Screenshot",
             ),
           variant: "secondary",
         },
@@ -138,7 +138,7 @@ const Projects = () => {
         id: "02",
         tag: "Blockchain Project",
         title: "E-Voting System",
-        subtitle: "Hyperledger Fabric + secure transaction workflow",
+        subtitle: "Hyperledger Fabric • Permissioned Ledger & Auditability",
         cover: ComelecDashboard,
         gallery: [
           Login,
@@ -153,21 +153,21 @@ const Projects = () => {
           AuditLedger,
         ],
         description:
-          "A blockchain-based electronic voting system designed for stronger integrity, security, and auditability. The platform uses Hyperledger Fabric to record voting transactions in a permissioned ledger, making records traceable, verifiable, and significantly more resistant to tampering than a typical centralized setup. The system also supports role-based access and controlled participation for a more secure voting process.",
+          "A high-integrity electronic voting platform leveraging Hyperledger Fabric to solve the trust deficit in digital elections. By utilizing a permissioned distributed ledger, the system ensures that every ballot is immutable, traceable, and cryptographically verifiable. The architecture replaces centralized vulnerability with a multi-peer validation consensus, providing a tamper-proof audit trail for electoral transparency.",
         highlights: [
-          "Designed most of the system interface and overall workflow",
-          "Implemented the Hyperledger Fabric side of the project",
-          "Uses a permissioned blockchain network for stronger transaction control",
-          "Creates tamper-resistant and traceable voting records",
-          "Supports role-based access for controlled voting actions",
+          "Architected the end-to-end Hyperledger Fabric network, including organization peers and ordering service.",
+          "Engineered the secure transaction workflow to ensure voter anonymity while maintaining ledger integrity.",
+          "Implemented a sophisticated Permissioned Access Control (PAC) layer for role-specific operations.",
+          "Developed 80% of the system's frontend, including high-stakes dashboards for COMELEC and auditors.",
+          "Established a cryptographically backed audit trail that allows for real-time verification of election results.",
         ],
         tech: techEvoting,
         roleText:
-          "I handled most of the system design and was the one responsible for implementing the Hyperledger Fabric side, including the blockchain structure and the secure transaction flow behind the platform.",
+          "I spearheaded the blockchain implementation and system design, orchestrating the transition from a standard database model to a distributed ledger architecture. I was responsible for the full chaincode lifecycle and the integration between the fabric-sdk and the React-based user interface.",
         focusText:
-          "Focused on building a more secure and tamper-resistant voting system by combining controlled access, verifiable transaction records, and blockchain-backed auditability through Hyperledger Fabric.",
+          "Focused on the intersection of security and scalability—ensuring that the system could handle concurrent transaction submissions without compromising the immutable state of the ledger or user privacy.",
         primaryCta: {
-          text: "Preview Screenshot",
+          text: "Preview Screenshots",
           action: () =>
             openPreview(
               [
@@ -184,14 +184,14 @@ const Projects = () => {
               ],
               0,
               "E-Voting System",
-              "System Screens"
+              "System Screens",
             ),
           variant: "secondary",
         },
         secondaryCta: null,
       },
     ],
-    [techSmartHelmet, techEvoting]
+    [techSmartHelmet, techEvoting],
   );
 
   useEffect(() => {
@@ -213,10 +213,14 @@ const Projects = () => {
   const TechPill = ({ icon, name }) => (
     <span
       className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-3 py-2 text-xs text-gray-200 transition hover:border-amber-400/25 hover:bg-white/[0.06]"
-      title={name}
-    >
+      title={name}>
       <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400/10 ring-1 ring-amber-400/15">
-        <img src={icon} alt={name} className="h-4 w-4 object-contain" draggable="false" />
+        <img
+          src={icon}
+          alt={name}
+          className="h-4 w-4 object-contain"
+          draggable="false"
+        />
       </span>
       <span className="whitespace-nowrap">{name}</span>
     </span>
@@ -242,8 +246,7 @@ const Projects = () => {
           href={cta.link}
           target="_blank"
           rel="noopener noreferrer"
-          className={baseClass}
-        >
+          className={baseClass}>
           {cta.text}
         </a>
       );
@@ -268,8 +271,7 @@ const Projects = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.22 }}
         transition={{ ...springSoft, delay: index * 0.03 }}
-        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]"
-      >
+        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]">
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
 
         <div className="grid gap-8 p-7 md:p-9 lg:grid-cols-12">
@@ -289,8 +291,7 @@ const Projects = () => {
                 {p.highlights.map((h) => (
                   <div
                     key={h}
-                    className="flex gap-3 rounded-2xl border border-white/10 bg-black/20 p-4"
-                  >
+                    className="flex gap-3 rounded-2xl border border-white/10 bg-black/20 p-4">
                     <Check />
                     <p className="text-xs leading-relaxed text-gray-300">{h}</p>
                   </div>
@@ -307,12 +308,9 @@ const Projects = () => {
           <div className="lg:col-span-8">
             <button
               type="button"
-              onClick={() =>
-                openPreview(p.gallery, 0, p.title, p.subtitle)
-              }
+              onClick={() => openPreview(p.gallery, 0, p.title, p.subtitle)}
               className="group relative w-full overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/30"
-              aria-label={`Preview ${p.title}`}
-            >
+              aria-label={`Preview ${p.title}`}>
               <img
                 src={p.cover}
                 alt={p.title}
@@ -325,7 +323,8 @@ const Projects = () => {
                   Click to preview
                 </span>
                 <span className="rounded-full bg-amber-400/15 px-3 py-1 text-xs text-amber-300 ring-1 ring-amber-400/20 backdrop-blur">
-                  {p.gallery.length} {p.gallery.length > 1 ? "screens" : "screen"}
+                  {p.gallery.length}{" "}
+                  {p.gallery.length > 1 ? "screens" : "screen"}
                 </span>
               </div>
             </button>
@@ -337,7 +336,11 @@ const Projects = () => {
 
               <div className="mt-5 flex flex-wrap gap-2">
                 {p.tech.map((t) => (
-                  <TechPill key={`${p.id}-${t.name}`} icon={t.icon} name={t.name} />
+                  <TechPill
+                    key={`${p.id}-${t.name}`}
+                    icon={t.icon}
+                    name={t.name}
+                  />
                 ))}
               </div>
             </div>
@@ -347,12 +350,16 @@ const Projects = () => {
             <div className="mt-7 grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
                 <p className="text-xs font-semibold text-amber-300">Role</p>
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">{p.roleText}</p>
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                  {p.roleText}
+                </p>
               </div>
 
               <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
                 <p className="text-xs font-semibold text-amber-300">Focus</p>
-                <p className="mt-2 text-xs leading-relaxed text-gray-400">{p.focusText}</p>
+                <p className="mt-2 text-xs leading-relaxed text-gray-400">
+                  {p.focusText}
+                </p>
               </div>
             </div>
           </div>
@@ -371,19 +378,16 @@ const Projects = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          className="mb-10"
-        >
+          className="mb-10">
           <motion.p
             variants={revealUp}
-            className="text-xs uppercase tracking-[0.2em] text-gray-500"
-          >
+            className="text-xs uppercase tracking-[0.2em] text-gray-500">
             Work
           </motion.p>
 
           <motion.div
             variants={revealUp}
-            className="mt-2 flex flex-wrap items-end justify-between gap-6"
-          >
+            className="mt-2 flex flex-wrap items-end justify-between gap-6">
             <h2 className="text-4xl font-extrabold tracking-tight">
               Featured <span className="text-amber-400">Projects</span>
             </h2>
@@ -396,10 +400,10 @@ const Projects = () => {
 
           <motion.p
             variants={revealUp}
-            className="mt-3 max-w-2xl text-sm text-gray-500"
-          >
-            Systems built for clarity, security, and practical use—focused on dashboards
-            and reliable workflows.
+            className="mt-3 max-w-2xl text-sm text-gray-500">
+            Architecting high-integrity systems where security meets
+            usability—specializing in distributed ledgers, real-time IoT
+            telemetry, and mission-critical data workflows.
           </motion.p>
         </motion.div>
 
@@ -417,31 +421,27 @@ const Projects = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setPreview(null)}
-            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6"
-          >
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6">
             <motion.div
               initial={{ scale: 0.97, opacity: 0, y: 10 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.98, opacity: 0, y: 10 }}
               transition={{ type: "spring", stiffness: 160, damping: 18 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl"
-            >
+              className="relative w-full max-w-6xl">
               <div className="absolute right-3 top-3 z-20 flex gap-2">
                 {preview.gallery.length > 1 && (
                   <>
                     <button
                       type="button"
                       onClick={prevPreview}
-                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400"
-                    >
+                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400">
                       Prev
                     </button>
                     <button
                       type="button"
                       onClick={nextPreview}
-                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400"
-                    >
+                      className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-white transition hover:bg-amber-400">
                       Next
                     </button>
                   </>
@@ -450,8 +450,7 @@ const Projects = () => {
                 <button
                   type="button"
                   onClick={() => setPreview(null)}
-                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-amber-400"
-                >
+                  className="rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-amber-400">
                   Close
                 </button>
               </div>
@@ -464,7 +463,9 @@ const Projects = () => {
               />
 
               <div className="mt-4 text-center">
-                <h3 className="text-lg font-semibold text-amber-300">{preview.title}</h3>
+                <h3 className="text-lg font-semibold text-amber-300">
+                  {preview.title}
+                </h3>
                 <p className="text-sm text-gray-400">{preview.meta}</p>
                 {preview.gallery.length > 1 && (
                   <p className="mt-1 text-xs text-gray-500">

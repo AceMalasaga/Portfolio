@@ -13,7 +13,7 @@ import dockerCompose from "../assets/docker-compose.png";
 import Hyperledger from "../assets/hyperledger-fabric.jpg";
 import Tailwind from "../assets/Tailwind.png";
 import Linux from "../assets/linux.png";
-import Profile from "../assets/profile.jpg";
+import Profile from "../assets/NJ268061.jpg";
 import Python from "../assets/python.png";
 import aceResume from "../assets/Resume-Ace.pdf";
 
@@ -48,103 +48,25 @@ const Home = () => {
     () => [
       {
         title: "Core Skills",
-        subtitle:
-          "Technologies I rely on most when building responsive interfaces, applications, and blockchain-based systems.",
         items: [
-          {
-            icon: Hyperledger,
-            name: "Hyperledger Fabric",
-            description:
-              "Permissioned blockchain platform for building secure distributed applications.",
-            level: "Core skill",
-          },
-          {
-            icon: Python,
-            name: "Python",
-            description:
-              "General-purpose language used for scripting and application logic.",
-            level: "Core skill",
-          },
-          {
-            icon: reactLogo,
-            name: "React.js",
-            description:
-              "Library for building modern component-based web interfaces.",
-            level: "Core skill",
-          },
-          {
-            icon: htmlLogo,
-            name: "HTML5",
-            description:
-              "Semantic markup for structuring accessible web pages.",
-            level: "Core skill",
-          },
-          {
-            icon: cssLogo,
-            name: "CSS3",
-            description:
-              "Stylesheets for responsive layouts and visual design.",
-            level: "Core skill",
-          },
-          {
-            icon: Tailwind,
-            name: "Tailwind CSS",
-            description:
-              "Utility-first framework for fast and consistent UI styling.",
-            level: "Core skill",
-          },
+          { icon: Hyperledger, name: "Hyperledger Fabric" },
+          { icon: Python, name: "Python" },
+          { icon: reactLogo, name: "React.js" },
+          { icon: htmlLogo, name: "HTML5" },
+          { icon: cssLogo, name: "CSS3" },
+          { icon: Tailwind, name: "Tailwind CSS" },
         ],
       },
       {
         title: "Experienced With",
-        subtitle:
-          "Additional tools and technologies applied in projects, internships, and development workflows.",
         items: [
-          {
-            icon: jsLogo,
-            name: "JavaScript",
-            description:
-              "Language for client-side interactivity and application logic.",
-            level: "Project experience",
-          },
-          {
-            icon: nodeLogo,
-            name: "Node.js",
-            description: "Runtime for backend services and API development.",
-            level: "Project experience",
-          },
-          {
-            icon: postgre,
-            name: "PostgreSQL",
-            description: "Relational database for structured data storage.",
-            level: "Project experience",
-          },
-          {
-            icon: dockerCompose,
-            name: "Docker Compose",
-            description:
-              "Tool for running and managing multi-service environments.",
-            level: "Project experience",
-          },
-          {
-            icon: Linux,
-            name: "Linux",
-            description:
-              "Development and deployment operating system environment.",
-            level: "Working experience",
-          },
-          {
-            icon: gitLogo,
-            name: "Git",
-            description: "Version control system for tracking code changes.",
-            level: "Working experience",
-          },
-          {
-            icon: githubLogo,
-            name: "GitHub",
-            description: "Platform for hosting repositories and collaboration.",
-            level: "Working experience",
-          },
+          { icon: jsLogo, name: "JavaScript" },
+          { icon: nodeLogo, name: "Node.js" },
+          { icon: postgre, name: "PostgreSQL" },
+          { icon: dockerCompose, name: "Docker Compose" },
+          { icon: Linux, name: "Linux" },
+          { icon: gitLogo, name: "Git" },
+          { icon: githubLogo, name: "GitHub" },
         ],
       },
     ],
@@ -153,36 +75,39 @@ const Home = () => {
 
   const stackHighlights = useMemo(
     () => [
-      { label: "Core Skills", value: "Hyperledger Fabric" },
+      { label: "Focus", value: "Hyperledger Fabric" },
       { label: "Frontend", value: "React.js + Tailwind CSS" },
-      { label: "Backend", value: "Python" },
-      { label: "Environment", value: "Docker Compose" },
+      { label: "Programming", value: "Python + JavaScript" },
+      { label: "Workflow", value: "Docker, Git, Linux" },
     ],
     [],
   );
-
   /* ================= EDUCATION ================= */
   const educationData = useMemo(
     () => [
       {
-        year: "2026",
+        year: "2022 – 2026",
         title: "College",
-        text: "University of Mindanao – Tagum • BS Information Technology",
+        text: "University of Mindanao – Tagum",
+        subtext: "Bachelor of Science in Information Technology",
       },
       {
-        year: "2020",
-        title: "Senior High",
+        year: "2018 – 2020",
+        title: "Senior High School",
         text: "Tagum National Trade School",
+        subtext: "Technical-Vocational-Livelihood – Automotive Servicing",
       },
       {
-        year: "2018",
-        title: "High School",
+        year: "2014 – 2018",
+        title: "Junior High School",
         text: "Canocotan National High School",
+        subtext: "Foundational Secondary Education",
       },
       {
-        year: "2014",
-        title: "Elementary",
+        year: "2008 – 2014",
+        title: "Elementary Education",
         text: "Herculina L. Edig Elementary School",
+        subtext: "Primary Academic Foundation",
       },
     ],
     [],
@@ -194,6 +119,9 @@ const Home = () => {
 
   /* ===== Hide scroll hint when the user starts scrolling ===== */
   const [userScrolled, setUserScrolled] = useState(false);
+
+  const [showScrollUI, setShowScrollUI] = useState(false);
+
   useEffect(() => {
     const onScroll = () => setUserScrolled(window.scrollY > 10);
     onScroll();
@@ -201,7 +129,34 @@ const Home = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const showScrollHint = heroInView && !userScrolled;
+  // ADDED: show scroll hint only on large screens with fine pointer (desktop/laptop)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(min-width: 1024px) and (pointer: fine)",
+    );
+
+    const updateScrollUI = () => {
+      setShowScrollUI(mediaQuery.matches);
+    };
+
+    updateScrollUI();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", updateScrollUI);
+    } else {
+      mediaQuery.addListener(updateScrollUI);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", updateScrollUI);
+      } else {
+        mediaQuery.removeListener(updateScrollUI);
+      }
+    };
+  }, []);
+
+  const showScrollHint = showScrollUI && heroInView && !userScrolled;
 
   const smoothScrollTo = (id) => (e) => {
     e.preventDefault();
@@ -288,12 +243,12 @@ const Home = () => {
               viewport={{ once: true, amount: 0.7 }}
               transition={springSoft}
               className="space-y-6">
-              <motion.div variants={itemUp}>
+              {/* <motion.div variants={itemUp}>
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                   <span className="h-2 w-2 rounded-full bg-amber-400" />
                   Front-end • Blockchain • Systems
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               <motion.h1
                 variants={itemUp}
@@ -307,19 +262,20 @@ const Home = () => {
                 className="max-w-xl text-sm leading-relaxed text-gray-400 md:text-base">
                 Frontend and Blockchain Developer specializing in{" "}
                 <span className="text-amber-300 font-semibold">
-                  React.js, Node.js, and Hyperledger Fabric
+                  React.js, and Hyperledger Fabric
                 </span>
-                . I build secure web applications and real-time monitoring
-                systems, including a{" "}
+                . I focus on bridging the gap between secure permissioned
+                ledgers and intuitive user interfaces. From developing a{" "}
                 <span className="text-amber-300 font-semibold">
                   Smart Hard Hat safety system
                 </span>{" "}
-                and a
+                to building a
                 <span className="text-amber-300 font-semibold">
                   {" "}
-                  blockchain-based e-voting system
+                  blockchain-based e-voting platform,
                 </span>{" "}
-                designed for reliability and real-world use.
+                I create real-time, reliable applications designed for
+                high-stakes, real-world use.
               </motion.p>
 
               <motion.div variants={itemUp} className="flex flex-wrap gap-3">
@@ -488,7 +444,7 @@ const Home = () => {
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
                         <p className="text-sm font-semibold text-gray-200">
-                          Blockchain Developer Intern{" "}
+                          Blockchain & Frontend Developer{" "}
                           <span className="text-amber-300">
                             • Hijo Resources Corporation
                           </span>
@@ -498,40 +454,41 @@ const Home = () => {
                         </p>
                       </div>
 
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] text-gray-300">
+                      <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] text-gray-300">
                         Internship
                       </span>
                     </div>
 
-                    <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                      Developed key parts of a{" "}
-                      <span className="font-semibold text-amber-300">
-                        Hyperledger Fabric–based e-voting system
-                      </span>
-                      , focusing on transparent and tamper-resistant voting
-                      records. I implemented blockchain transaction workflows
-                      and built role-based interfaces for administrators
-                      (COMELEC), LGU operators, auditors, and voters, connecting
-                      the UI to secure blockchain-backed voting transactions.
+                    {/* ✅ Project Title */}
+                    <p className="mt-3 text-sm font-semibold text-amber-300">
+                      Blockchain-Based E-Voting System
+                    </p>
+
+                    <p className="mt-2 text-sm leading-relaxed text-gray-400">
+                      <strong>Led the core development</strong> of a Hyperledger
+                      Fabric–based e-voting system. I engineered the entire
+                      blockchain architecture and 80% of the frontend
+                      application, creating a secure, tamper-proof ecosystem for
+                      electoral integrity.
                     </p>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {[
                         {
-                          t: "Blockchain Logic",
-                          d: "Implemented chaincode workflows and transaction processes to securely record voting data on the Hyperledger Fabric ledger.",
+                          t: "Blockchain Architecture",
+                          d: "Engineered the end-to-end Hyperledger Fabric network, including chaincode development, transaction validation logic, and ledger state management.",
                         },
                         {
-                          t: "Role-Based Interfaces",
-                          d: "Developed the main UI workflows for COMELEC/admin, LGU operators, auditors, and voters.",
+                          t: "Full-Stack Frontend",
+                          d: "Developed 80% of the user interface using React and Tailwind CSS, building specialized dashboards for COMELEC, LGU operators, auditors, and voters.",
                         },
                         {
-                          t: "Voting Workflow",
-                          d: "Built the process for voter verification, vote submission, and secure transaction recording within the blockchain network.",
+                          t: "Secure Voting Pipeline",
+                          d: "Built the integration layer between the UI and the blockchain, ensuring real-time voter verification and immutable transaction recording.",
                         },
                         {
-                          t: "Tech Stack",
-                          d: "React, Tailwind CSS, Node.js, Hyperledger Fabric, PostgreSQL, and Docker Compose.",
+                          t: "Deployment & Tools",
+                          d: "Orchestrated the development environment using Docker Compose and Node.js, ensuring seamless interaction between PostgreSQL and the Fabric Peer nodes.",
                         },
                       ].map((card) => (
                         <div
@@ -555,9 +512,9 @@ const Home = () => {
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div>
                         <p className="text-sm font-semibold text-gray-200">
-                          Freelance Blockchain Developer{" "}
+                          Blockchain Infrastructure Lead{" "}
                           <span className="text-amber-300">
-                            • Private Client
+                            • Buklod (Private Client)
                           </span>
                         </p>
                         <p className="mt-1 text-xs text-gray-500">
@@ -565,35 +522,43 @@ const Home = () => {
                         </p>
                       </div>
 
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] text-gray-300">
+                      <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[11px] text-gray-300">
                         Freelance
                       </span>
                     </div>
 
-                    <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                      Currently developing a Hyperledger Fabric–based system
-                      where submitted data must be verified first, and only
-                      authorized users are allowed to send records into the
-                      network.
+                    {/* ✅ Project Title */}
+                    <p className="mt-3 text-sm font-semibold text-amber-300">
+                      Buklod Distributed Blockchain Infrastructure System
+                    </p>
+
+                    <p className="mt-2 text-sm leading-relaxed text-gray-400">
+                      Architecting a hybrid 7-node environment for{" "}
+                      <span className="font-semibold text-amber-300">
+                        Buklod
+                      </span>
+                      . Managed a distributed 6-droplet cloud network for
+                      production and a dedicated local VM for secure network
+                      orchestration and cryptographic artifact generation.
                     </p>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
                       {[
                         {
-                          t: "Project focus",
-                          d: "Building a blockchain-based system designed for verified and access-controlled data submission.",
+                          t: "Distributed Infrastructure",
+                          d: "Deployed 6 droplets on DigitalOcean: 3 Orderers (Raft), 2 Peers, and 1 dedicated Backend API, ensuring high availability and separation of concerns.",
                         },
                         {
-                          t: "Access control",
-                          d: "Ensuring that only users with proper authorization can submit transactions to the system.",
+                          t: "Secure Orchestration",
+                          d: "Utilized a separate Local VM as a central node for generating configtx, genesis blocks, and channel artifacts to maintain a hardened root of trust.",
                         },
                         {
-                          t: "Data verification",
-                          d: "Implementing a process where records are validated first before they can be written to the blockchain.",
+                          t: "Identity & Verification",
+                          d: "Managing end-to-end X.509 certificate issuance for users, gateways, and hardware sensors to guarantee that every raw value is cryptographically signed.",
                         },
                         {
-                          t: "Goal",
-                          d: "Create a more secure and trustworthy workflow for handling sensitive system data.",
+                          t: "Hardware Integration",
+                          d: "Developing the data bridge between physical sensors and the Hyperledger ledger, utilizing Python for efficient backend processing and ledger commits.",
                         },
                       ].map((card) => (
                         <div
@@ -638,26 +603,52 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.22 }}
             transition={springSoft}
-            className="mb-10">
+            className="mb-6">
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
-              Tools
+              Tech Stack
             </p>
 
-            <div className="mt-2 flex flex-wrap items-end justify-between gap-6">
-              <h2 className="text-3xl font-extrabold tracking-tight md:text-4xl">
-                Tech <span className="text-amber-400">Stack</span>
+            <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Modern tools I use to build{" "}
+                <span className="text-amber-400">real projects</span>
               </h2>
 
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-amber-400" />
-                Core technologies and development tools
+                Technologies I use
               </div>
             </div>
 
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-gray-400 md:text-base">
-              A selection of the technologies I use most confidently, along with
-              tools I have applied in real projects and development workflows.
+            <p className="mt-4 max-w-3xl text-sm md:text-base leading-relaxed text-gray-400">
+              A curated set of technologies I use for frontend development,
+              blockchain-based systems, backend logic, and deployment workflows.
             </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {stackHighlights.map((item, idx) => (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ ...springSoft, delay: idx * 0.05 }}
+                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 backdrop-blur-xl transition duration-300 hover:border-amber-400/20 hover:bg-white/[0.06]">
+                  <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
+                    <div className="absolute right-0 top-0 h-20 w-20 rounded-full bg-amber-400/10 blur-2xl" />
+                  </div>
+
+                  <div className="relative z-10">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-gray-500">
+                      {item.label}
+                    </p>
+                    <p className="mt-2 text-sm font-semibold text-amber-400">
+                      {item.value}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
@@ -666,55 +657,33 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.18 }}
             transition={springSoft}
-            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)]">
-            <div className="pointer-events-none absolute -top-24 right-[-60px] h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-24 left-[-60px] h-72 w-72 rounded-full bg-white/5 blur-3xl" />
+            className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.07] via-white/[0.03] to-transparent shadow-[0_20px_80px_rgba(0,0,0,0.55)]">
+            <div className="pointer-events-none absolute -left-20 top-10 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
+            <div className="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-white/[0.05] blur-3xl" />
+            <div className="pointer-events-none absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-amber-400/5 blur-3xl" />
 
-            <div className="relative z-10 p-6 md:p-9">
-              {/* Top summary */}
-              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                {stackHighlights.map((item, idx) => (
-                  <motion.div
-                    key={item.label}
-                    initial={{ opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ ...springSoft, delay: idx * 0.05 }}
-                    className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-amber-400">
-                      {item.label}
-                    </p>
-                    <p className="mt-2 text-sm font-semibold text-gray-100">
-                      {item.value}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Stack groups */}
-              <div className="mt-8 space-y-6">
+            <div className="relative z-10 p-6 md:p-8 lg:p-10">
+              <div className="space-y-10">
                 {techStackGroups.map((group, groupIndex) => (
                   <motion.div
                     key={group.title}
-                    initial={{ opacity: 0, y: 18 }}
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.16 }}
+                    viewport={{ once: true, amount: 0.15 }}
                     transition={{ ...springSoft, delay: groupIndex * 0.08 }}
-                    className="rounded-[1.75rem] border border-white/10 bg-black/20 p-5 md:p-6">
-                    <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
+                    className="relative">
+                    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-100">
-                          {group.title}{" "}
-                          <span className="text-amber-400">Tools</span>
+                        <h3 className="text-2xl font-semibold tracking-tight text-white">
+                          {group.title}
                         </h3>
-                        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-gray-400">
-                          {group.subtitle}
-                        </p>
+                        <div className="mt-2 h-[2px] w-16 rounded-full bg-amber-400/80" />
                       </div>
 
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-gray-300">
-                        {group.items.length} tools
-                      </span>
+                      <div className="inline-flex w-fit items-center gap-2 rounded-full border border-amber-400/15 bg-amber-400/10 px-3 py-1.5 text-xs text-amber-300">
+                        <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                        {group.items.length} technologies
+                      </div>
                     </div>
 
                     <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -725,37 +694,38 @@ const Home = () => {
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true, amount: 0.2 }}
                           transition={{ ...springSoft, delay: idx * 0.04 }}
-                          whileHover={{ y: -6, scale: 1.01 }}
-                          className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-5 transition">
-                          <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-amber-400/10 blur-2xl opacity-0 transition group-hover:opacity-100" />
+                          whileHover={{ y: -8 }}
+                          className="group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20 p-5 backdrop-blur-xl transition duration-300 hover:border-amber-400/20 hover:bg-white/[0.05] hover:shadow-[0_12px_40px_rgba(255,191,36,0.08)]">
+                          <div className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100">
+                            <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-amber-400/10 blur-2xl" />
+                            <div className="absolute bottom-0 left-0 h-20 w-20 rounded-full bg-white/[0.04] blur-2xl" />
+                          </div>
 
-                          <div className="grid flex-1 grid-cols-[72px_minmax(0,1fr)] gap-4">
-                            <div className="flex h-full items-center justify-center">
-                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-amber-400/15 bg-white/[0.06] ring-1 ring-amber-400/15">
-                                <img
-                                  src={tech.icon}
-                                  alt={tech.name}
-                                  className="h-8 w-8 object-contain"
-                                  draggable="false"
-                                />
-                              </div>
+                          <div className="relative z-10 flex items-center gap-4">
+                            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] shadow-inner shadow-white/5 transition duration-300 group-hover:border-amber-400/20 group-hover:bg-amber-400/10">
+                              <img
+                                src={tech.icon}
+                                alt={tech.name}
+                                className="h-9 w-9 object-contain transition duration-300 group-hover:scale-110"
+                                draggable="false"
+                              />
                             </div>
 
                             <div className="min-w-0">
-                              <h4 className="text-base font-semibold text-amber-400">
+                              <h4 className="text-base font-semibold text-white transition-colors duration-300 group-hover:text-amber-400">
                                 {tech.name}
                               </h4>
-                              <p className="mt-2 text-sm leading-relaxed text-gray-400">
-                                {tech.description}
+                              <p className="mt-1 text-xs uppercase tracking-[0.18em] text-gray-500">
+                                Technology
                               </p>
                             </div>
                           </div>
 
-                          <div className="mt-5 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-                          <div className="mt-4 flex items-center gap-2 text-xs text-gray-500">
-                            <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400/90" />
-                            <span>{tech.level}</span>
+                          <div className="relative z-10 mt-5 flex items-center justify-between">
+                            <div className="h-px flex-1 bg-gradient-to-r from-amber-400/40 via-white/10 to-transparent" />
+                            <span className="ml-3 text-[10px] uppercase tracking-[0.2em] text-gray-500 transition group-hover:text-gray-300">
+                              Stack
+                            </span>
                           </div>
                         </motion.div>
                       ))}
@@ -777,7 +747,7 @@ const Home = () => {
             transition={springSoft}
             className="mb-10">
             <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
-              Background
+              Academic Foundation
             </p>
 
             <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
@@ -787,7 +757,7 @@ const Home = () => {
 
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
                 <span className="h-2 w-2 rounded-full bg-amber-400" />
-                Continuous learning • 2014–2026
+                Strategic Learning • 2014–2026
               </div>
             </div>
 
@@ -830,6 +800,9 @@ const Home = () => {
                         </p>
                         <p className="mt-2 text-sm leading-relaxed text-gray-400">
                           {item.text}
+                        </p>
+                        <p className="mt-1 text-xs text-gray-500 italic font-light">
+                          {item.subtext}
                         </p>
                       </div>
 

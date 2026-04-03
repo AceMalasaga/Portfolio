@@ -4,8 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import HijoCert from "../assets/cert_HIJO.jpg";
 import AntiCert from "../assets/cert_Anti.jpg";
 import EthicsCert from "../assets/cert_Ethics.jpg";
-import ICT1Cert from "../assets/cert-ICT1.jpg";
-import ICT2Cert from "../assets/cert_ICT2.jpg";
+import ICTCON1Cert from "../assets/cert-ICT1.jpg";
+import ICTCON2Cert from "../assets/cert_ICT2.jpg";
+import PDOSCert from "../assets/cert_PDOS.jpg";
+import hyperledger from "../assets/hyperledger-Certificate1.jpg";
+import CompletionCert from "../assets/CompletionCert.jpg";
 
 /* ===== Animations ===== */
 const sectionReveal = {
@@ -34,42 +37,63 @@ const Certificate = () => {
   const certifications = useMemo(
     () => [
       {
-        image: HijoCert,
-        title: "Internship Certificate",
-        issuer: "Hijo Resources Corporation",
-        year: "2025",
+        image: hyperledger,
+        title: "Hyperledger Fabric 2.x Network Design & Setup",
+        issuer: "Udemy • Rajeev Sakhuja",
+        year: "2026",
+        type: "Blockchain",
+      },
+      {
+        image: CompletionCert,
+        title: "On-the-Job Training Completion (486 Hours)",
+        issuer: "University of Mindanao • BSIT Program",
+        year: "2026",
         type: "Internship",
       },
       {
-        image: ICT2Cert,
-        title: "ICT Certification Level II",
-        issuer: "TESDA",
-        year: "2024",
-        type: "TESDA",
+        image: HijoCert,
+        title: "Internship Program Certificate",
+        issuer: "Hijo Resources Corporation",
+        year: "2026",
+        type: "Internship",
       },
       {
-        image: ICT1Cert,
-        title: "ICT Certification Level I",
-        issuer: "TESDA",
-        year: "2023",
-        type: "TESDA",
+        image: ICTCON1Cert, // <-- import this
+        title: "ICTCON 2024 - Frontend & Backend Workshop",
+        issuer: "DICT • DevCon",
+        year: "2024",
+        type: "Workshop",
+      },
+      {
+        image: ICTCON2Cert, // <-- import this
+        title: "Digital Motion Graphics Workshop",
+        issuer: "DICT • DevCon",
+        year: "2024",
+        type: "Workshop",
       },
       {
         image: AntiCert,
-        title: "Anti-Harassment & Safety Training",
-        issuer: "Professional Training",
+        title: "Anti-Sexual Harassment Seminar",
+        issuer: "University of Mindanao",
         year: "2025",
-        type: "Training",
+        type: "Seminar",
       },
       {
         image: EthicsCert,
-        title: "Code of Ethics Certification",
-        issuer: "Professional Development",
+        title: "Work Ethics Seminar",
+        issuer: "University of Mindanao",
         year: "2025",
-        type: "Professional",
+        type: "Seminar",
+      },
+      {
+        image: PDOSCert, // <-- import this
+        title: "Pre-Deployment Orientation Seminar (PDOS)",
+        issuer: "University of Mindanao",
+        year: "2025",
+        type: "Seminar",
       },
     ],
-    []
+    [],
   );
 
   const types = useMemo(() => {
@@ -106,8 +130,7 @@ const Certificate = () => {
           isActive
             ? "border-amber-400/30 bg-amber-400/10 text-amber-300"
             : "border-white/10 bg-white/[0.04] text-gray-300 hover:bg-white/[0.06]"
-        }`}
-      >
+        }`}>
         {label}
       </button>
     );
@@ -123,8 +146,7 @@ const Certificate = () => {
       viewport={{ once: true, amount: 0.25 }}
       transition={{ ...springSoft, delay: index * 0.04 }}
       onClick={() => setSelectedCert(cert)}
-      className="group w-full text-left"
-    >
+      className="group w-full text-left">
       <div className="relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.06] shadow-[0_18px_70px_rgba(0,0,0,0.55)] transition hover:border-amber-400/20">
         <div className="relative overflow-hidden">
           <img
@@ -152,7 +174,7 @@ const Certificate = () => {
         <div className="p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h4 className="text-base font-semibold text-gray-100">
+              <h4 className="text-base font-semibold text-gray-100 line-clamp-2 min-h-[48px]">
                 <span className="text-amber-300">{cert.title}</span>
               </h4>
               <p className="mt-1 text-sm text-gray-400">{cert.issuer}</p>
@@ -188,8 +210,7 @@ const Certificate = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.55 }}
           transition={springSoft}
-          className="mb-10"
-        >
+          className="mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
             Credentials
           </p>
@@ -206,7 +227,8 @@ const Certificate = () => {
           </div>
 
           <p className="mt-3 text-sm text-gray-500 max-w-2xl">
-            Click any certificate to view it in full. Use the filters to quickly find what you need.
+            Click any certificate to view it in full. Use the filters to quickly
+            find what you need.
           </p>
         </motion.div>
 
@@ -216,8 +238,7 @@ const Certificate = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           transition={springSoft}
-          className="mb-8 flex flex-wrap gap-2"
-        >
+          className="mb-8 flex flex-wrap gap-2">
           {types.map((t) => (
             <FilterPill key={t} label={t} />
           ))}
@@ -232,8 +253,7 @@ const Certificate = () => {
                 initial={{ opacity: 0, y: 10, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-              >
+                transition={{ duration: 0.25, ease: "easeOut" }}>
                 <CertCard cert={cert} index={index} />
               </motion.div>
             ))}
@@ -248,21 +268,18 @@ const Certificate = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6"
-          >
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-black/80 px-4 backdrop-blur-xl md:px-6">
             <motion.div
               initial={{ scale: 0.97, opacity: 0, y: 10 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.98, opacity: 0, y: 10 }}
               transition={springSnappy}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-6xl"
-            >
+              className="relative w-full max-w-6xl">
               <button
                 type="button"
                 onClick={() => setSelectedCert(null)}
-                className="absolute right-3 top-3 z-10 rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-white/10"
-              >
+                className="absolute right-3 top-3 z-10 rounded-xl border border-white/10 bg-black/40 px-4 py-2 text-sm text-gray-200 transition hover:bg-white/10">
                 Close
               </button>
 
@@ -282,7 +299,9 @@ const Certificate = () => {
                 <p className="text-sm text-gray-400">
                   {selectedCert.issuer} • {selectedCert.year}
                 </p>
-                <p className="mt-1 text-xs text-gray-500">{selectedCert.type}</p>
+                <p className="mt-1 text-xs text-gray-500">
+                  {selectedCert.type}
+                </p>
               </div>
             </motion.div>
           </motion.div>
