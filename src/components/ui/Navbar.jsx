@@ -1,6 +1,7 @@
 // src/ui/Navbar.jsx
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "../assets/logo.png";
 
 const NAV_OFFSET = 110;
 

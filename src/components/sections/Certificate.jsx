@@ -212,7 +212,7 @@ const Certificate = () => {
           transition={springSoft}
           className="mb-10">
           <p className="text-xs uppercase tracking-[0.2em] text-gray-500">
-            Credentials
+            Professional Development
           </p>
 
           <div className="mt-2 flex items-end justify-between gap-6 flex-wrap">
@@ -222,13 +222,12 @@ const Certificate = () => {
 
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-gray-300">
               <span className="h-2 w-2 rounded-full bg-amber-400" />
-              {certifications.length} credentials
+              Continuous Learning
             </div>
           </div>
 
           <p className="mt-3 text-sm text-gray-500 max-w-2xl">
-            Click any certificate to view it in full. Use the filters to quickly
-            find what you need.
+            A collection of certifications, technical training, and professional development focused on frontend engineering, blockchain systems, and practical software development.
           </p>
         </motion.div>
 
